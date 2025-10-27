@@ -103,6 +103,11 @@ Reuse stable features across nearby timesteps to avoid recomputing unchanged con
 * EfficientVLA: Training-Free Acceleration and Compression for VLA Models. [[Paper]](https://www.arxiv.org/pdf/2506.10100)
 * Robotic Control via Embodied Chain-of-Thought Reasoning. [[Paper]](https://arxiv.org/pdf/2407.08693) [[Project]](https://embodied-cot.github.io/) [[Code]](https://github.com/MichalZawalski/embodied-CoT/)
 * Fast ECoT: Efficient Embodied Chain-of-Thought via Thoughts Reuse. [[Paper]](https://arxiv.org/pdf/2506.07639)
+* KV-Efficient VLA: A Method of Speed up Vision
+Language Model with RNN-Gated Chunked KV Cache. [[Paper]](https://arxiv.org/pdf/2509.21354) [[Code]](https://github.com/l-zhuang/KV-Efficient-VLA)
+* RetoVLA: Reusing Register Tokens for Spatial Reasoning in
+Vision-Language-Action Models. [[Paper]](https://arxiv.org/pdf/2509.21243) [[Project]](https://www.youtube.com/watch?v=2CseBR-snZg)
+
 
 ---
 
@@ -150,11 +155,14 @@ Reduce adaptation cost with parameter-efficient tuning, distillation, and aggres
 
 * TinyVLA: Fast, Data-Efficient VLA Models. [[Paper]](https://arxiv.org/pdf/2409.12514) [[Project]](https://tiny-vla.github.io/) [[Code]](https://github.com/liyaxuanliyaxuan/TinyVLA)
 * CEEDVLA：Consistency Vision-Language-Action Model with Early-Exit Decoding. [[Paper]](https://arxiv.org/pdf/2506.13725) [[Project]](https://irpn-eai.github.io/CEED-VLA/) [[Code]](https://github.com/OpenHelix-Team/CEED-VLA)
-* MoLe-VLA: Dynamic Layer-skipping via Mixture-of-Layers (repeat). [[Paper]](https://arxiv.org/pdf/2503.20384) [[Project]](https://sites.google.com/view/mole-vla) [[Code]](https://github.com/RoyZry98/MoLe-VLA-Pytorch/)
-* VITA-VLA: EfEfficiently Teaching VLMs to Act via Action Expert Distillation. [[Paper]](https://arxiv.org/pdf/2510.09607) [[Project]](https://ltbai.github.io/VITA-VLA/) [[Code]](https://github.com/Tencent/VITA/tree/VITA-VLA)
+* MoLe-VLA: Dynamic Layer-skipping via Mixture-of-Layers. [[Paper]](https://arxiv.org/pdf/2503.20384) [[Project]](https://sites.google.com/view/mole-vla) [[Code]](https://github.com/RoyZry98/MoLe-VLA-Pytorch/)
+* VITA-VLA: Efficiently Teaching Vision-Language Models to Act via Action Expert Distillation. [[Paper]](https://arxiv.org/pdf/2510.09607) [[Project]](https://ltbai.github.io/VITA-VLA/) [[Code]](https://github.com/Tencent/VITA/tree/VITA-VLA)
 * Don’t Run with Scissors: Pruning Breaks VLA Models but They Can Be Recovered. [[Paper]](https://arxiv.org/pdf/2510.08464) [[Project]](https://gluestick-vla.github.io/)
 * Saliency-Aware Quantized Imitation Learning for Efficient Robotic Control. [[Paper]](https://arxiv.org/pdf/2505.15304)
 * BitVLA: 1-bit Vision-Language-Action Models for Robotics Manipulation. [[Paper]](https://arxiv.org/pdf/2506.07530) [[Code]](https://github.com/ustcwhy/BitVLA)
+* NinA: Normalizing Flows in Action. Training VLA Models with Normalizing Flows. [[Paper]](https://arxiv.org/pdf/2508.16845) [[Code]](https://github.com/dunnolab/NinA/)
+
+
 
 ### Inference Efficiency Techniques
 
@@ -163,7 +171,9 @@ Move beyond autoregressive decoding — use early-exit, speculative, parallel or
 * Fine-Tuning VLA Models: Optimizing Speed and Success. [[Paper]](https://arxiv.org/pdf/2502.19645) [[Project]](https://openvla-oft.github.io/) [[Code]](https://github.com/moojink/openvla-oft)
 * Speculative Decoding for VLA Models with Relaxed Acceptance. [[Paper]](https://arxiv.org/pdf/2507.22424) [[Code]](https://github.com/PineTreeWss/SpecVLA)
 * Accelerating VLA Models Integrated with Action Chunking via Parallel Decoding. [[Paper]](https://arxiv.org/pdf/2503.02310)
-* CEEDVLA：Consistency VLA with Early-Exit Decoding (repeat). [[Paper]](https://arxiv.org/pdf/2506.13725) [[Project]](https://irpn-eai.github.io/CEED-VLA/) [[Code]](https://github.com/OpenHelix-Team/CEED-VLA)
+* CEEDVLA：Consistency VLA with Early-Exit Decoding. [[Paper]](https://arxiv.org/pdf/2506.13725) [[Project]](https://irpn-eai.github.io/CEED-VLA/) [[Code]](https://github.com/OpenHelix-Team/CEED-VLA)
+* DISCRETE DIFFUSION VLA: BRINGING DISCRETEDIFFUSION TO ACTION DECODING IN VISION-
+LANGUAGE-ACTION POLICIES. [[Paper]](https://arxiv.org/pdf/2508.20072)
 
 ---
 
