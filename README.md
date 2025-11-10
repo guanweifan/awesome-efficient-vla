@@ -50,6 +50,8 @@ Use smaller / efficiency-tuned VLMs or compact LMs to cut inference cost; straig
 * SmolVLA: A vision-language-action model for affordable and efficient robotics. [[Paper]](https://arxiv.org/pdf/2506.01844) [[Project]](https://huggingface.co/blog/smolvla)
 * NORA: A SMALL OPEN-SOURCED GENERALIST VISION-LANGUAGE ACTION MODEL FOR EMBODIED TASKS. [[Paper]](https://arxiv.org/pdf/2504.19854) [[Project]](https://declare-lab.github.io/nora) [[Code]](https://github.com/declare-lab/nora)
 * EdgeVLA: Efficient Vision-Language-Action Models. [[Paper]](https://arxiv.org/pdf/2507.14049)
+* Evo-1: Lightweight Vision-Language-Action Model
+with Preserved Semantic Alignment. [[Paper]](https://arxiv.org/pdf/2511.04555) [[Code]](https://github.com/MINT-SJTU/Evo-1)
 
 ### Dynamic Computation Pathways
 
@@ -142,6 +144,7 @@ Insert intermediate reasoning (text/vision) before actions — improves planning
 * Video Prediction Policy: A Generalist Robot Policy with Predictive Visual Representations. [[Paper]](https://arxiv.org/pdf/2412.14803) [[Project]](https://video-prediction-policy.github.io/) [[Code]](https://github.com/roboterax/video-prediction-policy)
 * CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models. [[Paper]](https://arxiv.org/pdf/2503.22020) [[Project]](https://cot-vla.github.io/)
 * DreamVLA: A Vision-Language-Action Model Dreamed with Comprehensive World Knowledge. [[Paper]](https://arxiv.org/pdf/2507.04447) [[Project]](https://zhangwenyao1.github.io/DreamVLA/) [[Code]](https://github.com/Zhangwenyao1/DreamVLA)
+* PIXELVLA: ADVANCING PIXEL-LEVEL UNDER-STANDING IN VISION-LANGUAGE-ACTION MODEL. [[Paper]](https://arxiv.org/pdf/2511.01571) 
 
 ---
 
@@ -174,6 +177,8 @@ Move beyond autoregressive decoding — use early-exit, speculative, parallel or
 * CEEDVLA：Consistency VLA with Early-Exit Decoding. [[Paper]](https://arxiv.org/pdf/2506.13725) [[Project]](https://irpn-eai.github.io/CEED-VLA/) [[Code]](https://github.com/OpenHelix-Team/CEED-VLA)
 * DISCRETE DIFFUSION VLA: BRINGING DISCRETEDIFFUSION TO ACTION DECODING IN VISION-
 LANGUAGE-ACTION POLICIES. [[Paper]](https://arxiv.org/pdf/2508.20072)
+* UNIFIED DIFFUSION VLA: VISION-LANGUAGE-
+ACTION MODEL VIA JOINT DISCRETE DENOISINGDIFFUSION PROCESS. [[Paper]](https://arxiv.org/pdf/2511.01718) [[Project]](https://irpn-eai.github.io/UD-VLA.github.io/) [[Code]](https://github.com/OpenHelix-Team/UD-VLA/tree/main)
 
 ---
 
