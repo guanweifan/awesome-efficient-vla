@@ -212,4 +212,9 @@ If you find this survey or resource list helpful, please consider citing our wor
       archivePrefix={arXiv},
       primaryClass={cs.RO},
       url={[https://arxiv.org/abs/2510.17111](https://arxiv.org/abs/2510.17111)}
+
 }
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=guanweifan/awesome-efficient-vla&type=Timeline)](#fig:starhistory)
