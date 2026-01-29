@@ -8,14 +8,39 @@
   <img src="./imgs/overview.png" width="80%" height="80%">
 </p>
 
-This repository serves as a live collection of resources for our survey:
+This repository serves as a **continuously updated** collection of resources for our survey:  
 **[Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey](https://arxiv.org/abs/2510.17111)**.
 
-We’ve organized the current Efficient VLA landscape into a clear taxonomy to help researchers navigate the field more easily. This is a community-driven project — if you’ve authored or found a great paper that we missed, please open a PR or send me email! Let’s keep this list growing together.
+We organize the Efficient Vision-Language-Action literature into a clear taxonomy spanning model architecture, perception, action generation, and training/inference efficiency, aiming to help researchers quickly navigate this fast-evolving field.
+
+---
+
+## 🔥 Latest Updates
+
+This repository is updated on a **weekly / bi-weekly** basis to reflect the latest progress in Efficient Vision-Language-Action research.
+
+**This update (2026-01-29)** includes the following newly added papers:
+
+- **[[Selective Feature Processing]](#selective-feature-processing)**  
+  [DTP:A SIMPLE YET EFFECTIVE DISTRACTING TOKEN PRUNINGFRAMEWORK FOR VISION-LANGUAGE ACTION MODELS](https://arxiv.org/pdf/2601.16065)
+- **[[Text Reasoning]](#text-reasoning)**  
+  [Fast-ThinkAct: Efficient Vision-Language-Action Reasoning via Verbalizable Latent Planning](https://arxiv.org/pdf/2601.09708)
+- **[[Visual Reasoning]](#visual-reasoning)**  
+  [LaST0: Latent Spatio-Temporal Chain-of-Thought for Robotic Vision–Language–Action Model](https://arxiv.org/pdf/2601.05248)
+- **[[Training Efficiency Techniques]](#training-efficiency-techniques)**  
+  [Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control](https://arxiv.org/pdf/2512.11921)
+
+  [Shallow-π: Knowledge Distillation for Flow-based VLAs](https://arxiv.org/pdf/2601.20262)
+- **[[Inference Efficiency Techniques]](#inference-efficiency-techniques)**  
+  [ActionFlow: A Pipelined Action Acceleration for Vision Language Models on Edge](https://arxiv.org/pdf/2512.20276)
+
+If you find this repo useful, a ⭐ would help improve its visibility. Contributions and paper suggestions are always welcome~
+
 
 ---
 
 ## 📑 Table of Contents
+
 
 * [1. Efficient Model Architecture](#efficient-model-architecture)
     * [Static Backbone Selection](#static-backbone-selection)
@@ -105,6 +130,7 @@ Visual tokens dominate compute; reduce token length and redundancy via selective
 | VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference | [[Paper]](https://arxiv.org/pdf/2511.16449) |
 | COMPRESSOR-VLA: INSTRUCTION-GUIDED VISUAL TOKEN COMPRESSION FOR EFFICIENT ROBOTIC MANIPULATION | [[Paper]](https://arxiv.org/pdf/2511.18950) |
 | Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models | [[Paper]](https://arxiv.org/pdf/2512.09927) |
+| DTP:A SIMPLE YET EFFECTIVE DISTRACTING TOKEN PRUNINGFRAMEWORK FOR VISION-LANGUAGE ACTION MODELS | [[Paper]](https://arxiv.org/pdf/2601.16065) [[Code]](https://anonymous.4open.science/r/CBD3) |
 
 ### Temporal Sharing and Reuse
 > Reuse stable features across nearby timesteps to avoid recomputing unchanged content and save latency.
@@ -151,6 +177,7 @@ Action design affects precision and latency. Choices range from raw low-dim cont
 | Efficient Embodied Chain-of-Thought via Thoughts Reuse | [[Paper]](https://arxiv.org/pdf/2506.07639) |
 | Training Strategies for Efficient Embodied Reasoning | [[Paper]](https://arxiv.org/pdf/2505.08243) [[Project]](https://ecot-lite.github.io/) |
 | Latent Chain-of-Thought World Modeling for End-to-End Autonomous Driving | [[Paper]](https://arxiv.org/pdf/2512.10226) |
+| Fast-ThinkAct: Efficient Vision-Language-Action Reasoning via Verbalizable Latent Planning | [[Paper]](https://arxiv.org/pdf/2601.09708) [[Project]](https://jasper0314-huang.github.io/fast-thinkact/) |
 
 #### Visual Reasoning
 | Paper / Method | Resources |
@@ -161,6 +188,7 @@ Action design affects precision and latency. Choices range from raw low-dim cont
 | DreamVLA: A Vision-Language-Action Model Dreamed with Comprehensive World Knowledge | [[Paper]](https://arxiv.org/pdf/2507.04447) [[Project]](https://zhangwenyao1.github.io/DreamVLA/) [[Code]](https://github.com/Zhangwenyao1/DreamVLA) |
 | PIXELVLA: ADVANCING PIXEL-LEVEL UNDERSTANDING IN VISION-LANGUAGE-ACTION MODEL | [[Paper]](https://arxiv.org/pdf/2511.01571) |
 | MM-ACT: Learn from Multimodal Parallel Generation to Act | [[Paper]](https://arxiv.org/pdf/2512.00975) [[Code]](https://github.com/HHYHRHY/MM-ACT) |
+| LaST0: Latent Spatio-Temporal Chain-of-Thought for Robotic Vision–Language–Action Model | [[Paper]](https://arxiv.org/pdf/2601.05248) |
 
 ---
 
@@ -184,6 +212,8 @@ Beyond model/representation, practical deployment needs efficiency during traini
 | FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models | [[Paper]](https://arxiv.org/pdf/2511.16233) |
 | ActDistill: General Action-Guided Self-Derived Distillation for Efficient Vision-Language-Action Models | [[Paper]](https://arxiv.org/pdf/2511.18082) [[Code]](https://github.com/gooogleshanghai/ActDistill) |
 | FASTER: TOWARD EFFICIENT AUTOREGRESSIVE VISION LANGUAGE ACTION MODELING VIA NEURAL ACTION TOKENIZATION | [[Paper]](https://arxiv.org/pdf/2512.04952)|
+| Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control | [[Paper]](https://arxiv.org/pdf/2512.11921)|
+| Shallow-π: Knowledge Distillation for Flow-based VLAs | [[Paper]](https://arxiv.org/pdf/2601.20262) [[Project]](https://icsl-jeon.github.io/shallow-pi/) |
 
 ### Inference Efficiency Techniques
 > Move beyond autoregressive decoding — use early-exit, speculative, parallel or chunked decoding to reduce latency in time-critical control loops.
@@ -196,6 +226,8 @@ Beyond model/representation, practical deployment needs efficiency during traini
 | CEED-VLA: Consistency VLA with Early-Exit Decoding | [[Paper]](https://arxiv.org/pdf/2506.13725) [[Project]](https://irpn-eai.github.io/CEED-VLA/) [[Code]](https://github.com/OpenHelix-Team/CEED-VLA) |
 | DISCRETE DIFFUSION VLA: BRINGING DISCRETE DIFFUSION TO ACTION DECODING IN VISION-LANGUAGE-ACTION POLICIES | [[Paper]](https://arxiv.org/pdf/2508.20072) |
 | UNIFIED DIFFUSION VLA: VISION-LANGUAGE-ACTION MODEL VIA JOINT DISCRETE DENOISING DIFFUSION PROCESS | [[Paper]](https://arxiv.org/pdf/2511.01718) [[Project]](https://irpn-eai.github.io/UD-VLA.github.io/) [[Code]](https://github.com/OpenHelix-Team/UD-VLA/tree/main) |
+| ActionFlow: A Pipelined Action Acceleration for Vision Language
+Models on Edge | [[Paper]](https://arxiv.org/pdf/2512.20276) [[Code]](https://anonymous.4open.science/r/ActionFlow-1D47/README.md) |
 
 ---
 
