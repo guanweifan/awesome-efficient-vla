@@ -1,8 +1,8 @@
 # Awesome-Efficient-VLA [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 [![arXiv](https://img.shields.io/badge/arXiv-2510.17111-b31b1b.svg)](https://arxiv.org/pdf/2510.17111)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
-[![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/guanweifan/awesome-efficient-vla/commits/main/)
+[![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/guanweifan/awesome-efficient-vla/pulls)
 
 <p align="center">
   <img src="./imgs/overview.png" width="100%" height="80%">
@@ -14,13 +14,13 @@
 
 ---
 
-## 🔥 Latest Updates (2026-02-17)
+## 🔥 Latest Updates (2026-03-09)
 
-- **Architecture:** [EcoVLA](#dynamic-computation-pathways), [RD-VLA](#dynamic-computation-pathways), [StreamVLA](#dual-system-design)
-- **Perception:** [LAC](#temporal-sharing-and-reuse), [SD-VLA](#temporal-sharing-and-reuse), [HiST-VLA](#selective-feature-processing), [ThinkProprio](#selective-feature-processing)
-- **Reasoning:** [LaRA-VLA](#reasoning-aware-action-generation)
-- **Training:** [QVLA](#training-efficiency-techniques), [RL-VLA3](#training-efficiency-techniques), [TwinRL](#training-efficiency-techniques), [HBVLA](#training-efficiency-techniques)
-- **Inference:** [DynamicVLA](#inference-efficiency-techniques), [Xiaomi-Robotics-0](#inference-efficiency-techniques)
+- **Architecture:** [DySL-VLA](#dynamic-computation-pathways), [TacMamba](#dual-system-design), [Act-Think-Abstain](#dynamic-computation-pathways)
+- **Perception:** [FUTURE-VLA](#temporal-sharing-and-reuse), [BFA++](#selective-feature-processing), [A-MMR](#temporal-sharing-and-reuse)
+- **Action:** [ActionCodec](#raw-action-generation), [OptimusVLA](#raw-action-generation), [AutoHorizon](#raw-action-generation), [LinkVLA](#raw-action-generation)
+- **Training:** [QuantVLA](#training-efficiency-techniques)
+- **Inference:** [VLA-Perf](#inference-efficiency-techniques), [KERV](#inference-efficiency-techniques), [LiteVLA-Edge](#inference-efficiency-techniques)
 
 See the full list in the corresponding sections below.
 
@@ -66,6 +66,7 @@ The following sections organize papers by their primary efficiency mechanism.
 > **Tag Notes**
 > - `Secondary`: this paper is also relevant to another taxonomy category.
 > - `Domain: AD (Autonomous Driving)`: this paper targets driving scenarios, included for transferable efficiency methods.
+> - `Domain: VLN (Vision-Language-Navigation)`: this paper targets vision-language navigation, included for transferable efficiency methods.
 
 <a id="efficient-model-architecture"></a>
 ## 🏗️ Efficient Model Architecture
@@ -78,14 +79,30 @@ This category modifies the computation graph or module organization of VLA model
 > Lower the baseline cost by adopting smaller or efficiency-oriented backbones.
 The model structure is fixed and lightweight by design, reducing latency and memory at all timesteps without runtime adaptation. The trade-off is reduced peak capacity on complex tasks.
 
-| Title | Date | Key Idea | Resources |
-|:--|:--:|:--|:--:|
-| [![Star](https://img.shields.io/github/stars/MINT-SJTU/Evo-1.svg?style=social&label=Star)](https://github.com/MINT-SJTU/Evo-1) <br> [**Evo-1: Lightweight Vision-Language-Action Model with Preserved Semantic Alignment**](https://arxiv.org/pdf/2511.04555) <br><sub>Secondary: `4.1 Training Efficiency Techniques`</sub> | 2025-11 | Lightweight VLA built on a compact multimodal backbone with cross-modulated diffusion transformer and optimized integration module. | [Code](https://github.com/MINT-SJTU/Evo-1) |
-| [**RetoVLA: Reusing Register Tokens for Spatial Reasoning in Vision-Language-Action Models**](https://arxiv.org/pdf/2509.21243) | 2025-09 | Lightweight VLA reusing Vision Transformer register tokens to enhance spatial reasoning without increasing model size. | [Website](https://www.youtube.com/watch?v=2CseBR-snZg) |
-| [![Star](https://img.shields.io/github/stars/huggingface/lerobot.svg?style=social&label=Star)](https://github.com/huggingface/lerobot) <br> [**SmolVLA: A vision-language-action model for affordable and efficient robotics**](https://arxiv.org/pdf/2506.01844) <br><sub>Secondary: `4.2 Inference Efficiency Techniques`</sub> | 2025-06 | Small-scale VLA designed for single-GPU training with asynchronous inference and chunked action generation. | [Code](https://github.com/huggingface/lerobot) / [Website](https://huggingface.co/blog/smolvla) |
-| [![Star](https://img.shields.io/github/stars/declare-lab/nora.svg?style=social&label=Star)](https://github.com/declare-lab/nora) <br> [**NORA: A SMALL OPEN-SOURCED GENERALIST VISION-LANGUAGE ACTION MODEL FOR EMBODIED TASKS**](https://arxiv.org/pdf/2504.19854) | 2025-04 | 3B-parameter VLA built on Qwen-2.5-VL-3B backbone with FAST+ tokenizer for efficient action sequence modeling. | [Code](https://github.com/declare-lab/nora) / [Website](https://declare-lab.github.io/nora) |
-| [![Star](https://img.shields.io/github/stars/liyaxuanliyaxuan/TinyVLA.svg?style=social&label=Star)](https://github.com/liyaxuanliyaxuan/TinyVLA) [![Publish](https://img.shields.io/badge/Conference-RAL%202025-blue)]() <br> [**TinyVLA: Towards Fast, Data-Efficient Vision-Language-Action Models for Robotic Manipulation**](https://arxiv.org/pdf/2409.12514) <br><sub>Secondary: `4.1 Training Efficiency Techniques`</sub> | 2024-09 | Compact VLA initialized with high-speed multimodal backbone and diffusion policy decoder for efficient learning and inference. | [Code](https://github.com/liyaxuanliyaxuan/TinyVLA) / [Website](https://tiny-vla.github.io/) |
-| [![Star](https://img.shields.io/github/stars/lmzpai/roboMamba.svg?style=social&label=Star)](https://github.com/lmzpai/roboMamba) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202024-blue)]() <br> [**RoboMamba: Efficient Vision-Language-Action Model for Robotic Reasoning and Manipulation**](https://arxiv.org/pdf/2406.04339) <br><sub>Secondary: `4.1 Training Efficiency Techniques`</sub> | 2024-06 | VLA built on Mamba state-space backbone for linear-complexity reasoning and efficient inference. | [Code](https://github.com/lmzpai/roboMamba) / [Website](https://sites.google.com/view/robomamba-web) |
+- [**Evo-1: Lightweight Vision-Language-Action Model with Preserved Semantic Alignment**](https://arxiv.org/pdf/2511.04555) [![Star](https://img.shields.io/github/stars/MINT-SJTU/Evo-1.svg?style=social&label=Star)](https://github.com/MINT-SJTU/Evo-1)
+
+  (`2025-11`) Compact multimodal backbone with a cross-modulated diffusion transformer. <sub>Sec. 4.1</sub>
+
+- [**RetoVLA: Reusing Register Tokens for Spatial Reasoning in Vision-Language-Action Models**](https://arxiv.org/pdf/2509.21243)
+
+  (`2025-09`) Reuses Vision Transformer register tokens for spatial reasoning.
+
+- [**SmolVLA: A vision-language-action model for affordable and efficient robotics**](https://arxiv.org/pdf/2506.01844) [![Star](https://img.shields.io/github/stars/huggingface/lerobot.svg?style=social&label=Star)](https://github.com/huggingface/lerobot)
+
+  (`2025-06`) Single-GPU training with asynchronous inference. <sub>Sec. 4.2</sub>
+
+- [**NORA: A SMALL OPEN-SOURCED GENERALIST VISION-LANGUAGE ACTION MODEL FOR EMBODIED TASKS**](https://arxiv.org/pdf/2504.19854) [![Star](https://img.shields.io/github/stars/declare-lab/nora.svg?style=social&label=Star)](https://github.com/declare-lab/nora)
+
+  (`2025-04`) Qwen-2.5-VL-3B backbone with a FAST+ tokenizer.
+
+- [**TinyVLA: Towards Fast, Data-Efficient Vision-Language-Action Models for Robotic Manipulation**](https://arxiv.org/pdf/2409.12514) [![Star](https://img.shields.io/github/stars/liyaxuanliyaxuan/TinyVLA.svg?style=social&label=Star)](https://github.com/liyaxuanliyaxuan/TinyVLA) [![Publish](https://img.shields.io/badge/Conference-RAL%202025-blue)]()
+
+  (`2024-09`) High-speed multimodal backbone with a diffusion policy decoder. <sub>Sec. 4.1</sub>
+
+- [**RoboMamba: Efficient Vision-Language-Action Model for Robotic Reasoning and Manipulation**](https://arxiv.org/pdf/2406.04339) [![Star](https://img.shields.io/github/stars/lmzpai/roboMamba.svg?style=social&label=Star)](https://github.com/lmzpai/roboMamba) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202024-blue)]()
+
+  (`2024-06`) Mamba state-space backbone for linear-complexity reasoning and efficient inference. <sub>Sec. 4.1</sub>
+
 
 
 <a id="dynamic-computation-pathways"></a>
@@ -93,14 +110,38 @@ The model structure is fixed and lightweight by design, reducing latency and mem
 > Retain a large-capacity backbone but reduce runtime cost by dynamically selecting computation paths.
 Methods in this category introduce layer skipping, routing, or built-in early-exit mechanisms that adapt depth or module usage conditioned on input difficulty.
 
-| Title | Date | Key Idea | Resources |
-|:--|:--:|:--|:--:|
-| [**Environment-Aware Adaptive Pruning with Interleaved Inference Orchestration for Vision-Language-Action Models**](https://arxiv.org/pdf/2602.00780) <br><sub>Secondary: `4.2 Inference Efficiency Techniques`</sub> | 2026-02 | Training-free environment-aware adaptive channel pruning with interleaved orchestration for efficient VLA inference. | - |
-| [![Star](https://img.shields.io/github/stars/rd-vla/rd-vla.svg?style=social&label=Star)](https://github.com/rd-vla/rd-vla) <br> [**Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of Vision-Language-Action Models via Latent Iterative Reasoning**](https://arxiv.org/pdf/2602.07845) <br><sub>Secondary: `3.2 Reasoning-Aware Action Generation`</sub> | 2026-02 | Recurrent latent iterative refinement with adaptive stopping for compute-adaptive VLA inference. | [Code](https://github.com/rd-vla/rd-vla) / [Website](https://rd-vla.github.io/) |
-| [**NANOVLA: ROUTING DECOUPLED VISION-LANGUAGE UNDERSTANDING FOR NANO-SIZED GENERALIST ROBOTIC POLICIES**](https://arxiv.org/pdf/2510.25122) <br><sub>Secondary: `4.2 Inference Efficiency Techniques`</sub> | 2025-10 | Lightweight VLA with dynamic routing and vision-language decoupling for efficient edge deployment. | - |
-| [![Star](https://img.shields.io/github/stars/intuitive-robots/flower_vla_calvin.svg?style=social&label=Star)](https://github.com/intuitive-robots/flower_vla_calvin) [![Publish](https://img.shields.io/badge/Conference-CoRL%202025-blue)]() <br> [**FLOWER: Democratizing Generalist Robot Policies with Efficient Vision-Language-Action Flow Policies**](https://arxiv.org/pdf/2509.04996) | 2025-09 | Intermediate-modality fusion with LLM layer pruning and modular Global-AdaLN conditioning for compact diffusion VLA. | [Code](https://github.com/intuitive-robots/flower_vla_calvin) / [Website](https://intuitive-robots.github.io/flower_vla/) |
-| [![Star](https://img.shields.io/github/stars/RoyZry98/MoLe-VLA-Pytorch.svg?style=social&label=Star)](https://github.com/RoyZry98/MoLe-VLA-Pytorch) [![Publish](https://img.shields.io/badge/Conference-AAAI%202026-blue)]() <br> [**MoLe-VLA: Dynamic Layer-skipping Vision Language Action Model via Mixture-of-Layers for Efficient Robot Manipulation**](https://arxiv.org/pdf/2503.20384) | 2025-03 | Mixture-of-Layers VLA with spatial-temporal router for dynamic LLM layer activation. | [Code](https://github.com/RoyZry98/MoLe-VLA-Pytorch/) / [Website](https://sites.google.com/view/mole-vla) |
-| [![Star](https://img.shields.io/github/stars/yueyang130/DeeR-VLA.svg?style=social&label=Star)](https://github.com/yueyang130/DeeR-VLA) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202024-blue)]() <br> [**DeeR-VLA: Dynamic Inference of Multimodal Large Language Models for Efficient Robot Execution**](https://arxiv.org/pdf/2411.02359) <br><sub>Secondary: `4.2 Inference Efficiency Techniques`</sub> | 2024-11 | Multi-exit MLLM-based VLA with dynamic early termination conditioned on resource constraints. | [Code](https://github.com/yueyang130/DeeR-VLA) |
+- [**Act, Think or Abstain: Complexity-Aware Adaptive Inference for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.05147)
+
+  🔥 New (`2026-03`) Adaptive routing between direct acting, deeper reasoning, and abstention based on task complexity.
+
+- [**DySL-VLA: Efficient Vision-Language-Action Model Inference via Dynamic-Static Layer-Skipping for Robot Manipulation**](https://arxiv.org/pdf/2602.22896) [![Star](https://img.shields.io/github/stars/PKU-SEC-Lab/DYSL_VLA.svg?style=social&label=Star)](https://github.com/PKU-SEC-Lab/DYSL_VLA)
+
+  🔥 New (`2026-02`) Dynamic-static layer skipping that prioritizes action-critical layers during inference. <sub>Sec. 4.1</sub>
+
+- [**Environment-Aware Adaptive Pruning with Interleaved Inference Orchestration for Vision-Language-Action Models**](https://arxiv.org/pdf/2602.00780)
+
+  (`2026-02`) Environment-aware adaptive channel pruning with interleaved orchestration. <sub>Sec. 4.2</sub>
+
+- [**Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of Vision-Language-Action Models via Latent Iterative Reasoning**](https://arxiv.org/pdf/2602.07845) [![Star](https://img.shields.io/github/stars/rd-vla/rd-vla.svg?style=social&label=Star)](https://github.com/rd-vla/rd-vla)
+
+  (`2026-02`) Recurrent latent refinement with adaptive stopping for compute-aware VLA inference. <sub>Sec. 3.2</sub>
+
+- [**NANOVLA: ROUTING DECOUPLED VISION-LANGUAGE UNDERSTANDING FOR NANO-SIZED GENERALIST ROBOTIC POLICIES**](https://arxiv.org/pdf/2510.25122)
+
+  (`2025-10`) Lightweight VLA with dynamic routing. <sub>Sec. 4.2</sub>
+
+- [**FLOWER: Democratizing Generalist Robot Policies with Efficient Vision-Language-Action Flow Policies**](https://arxiv.org/pdf/2509.04996) [![Star](https://img.shields.io/github/stars/intuitive-robots/flower_vla_calvin.svg?style=social&label=Star)](https://github.com/intuitive-robots/flower_vla_calvin) [![Publish](https://img.shields.io/badge/Conference-CoRL%202025-blue)]()
+
+  (`2025-09`) Intermediate-modality fusion with LLM layer pruning.
+
+- [**MoLe-VLA: Dynamic Layer-skipping Vision Language Action Model via Mixture-of-Layers for Efficient Robot Manipulation**](https://arxiv.org/pdf/2503.20384) [![Star](https://img.shields.io/github/stars/RoyZry98/MoLe-VLA-Pytorch.svg?style=social&label=Star)](https://github.com/RoyZry98/MoLe-VLA-Pytorch) [![Publish](https://img.shields.io/badge/Conference-AAAI%202026-blue)]()
+
+  (`2025-03`) Mixture-of-Layers VLA with a spatial-temporal router for dynamic LLM layer activation.
+
+- [**DeeR-VLA: Dynamic Inference of Multimodal Large Language Models for Efficient Robot Execution**](https://arxiv.org/pdf/2411.02359) [![Star](https://img.shields.io/github/stars/yueyang130/DeeR-VLA.svg?style=social&label=Star)](https://github.com/yueyang130/DeeR-VLA) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202024-blue)]()
+
+  (`2024-11`) Multi-exit MLLM-based VLA with resource-aware early termination. <sub>Sec. 4.2</sub>
+
 
 
 <a id="dual-system-design"></a>
@@ -108,18 +149,50 @@ Methods in this category introduce layer skipping, routing, or built-in early-ex
 > Decompose the VLA policy into two cooperating modules operating at different frequencies.
 A slow, high-capacity reasoning component provides guidance to a fast, lightweight reactive controller, balancing deliberation and real-time execution.
 
-| Title | Date | Key Idea | Resources |
-|:--|:--:|:--|:--:|
-| [**StreamVLA: Breaking the Reason-Act Cycle via Completion-State Gating**](https://arxiv.org/pdf/2602.01100) <br><sub>Secondary: `4.2 Inference Efficiency Techniques`</sub> | 2026-02 | Dual-system VLA with lock-and-gated selective slow reasoning to reduce redundant multimodal computation. | - |
-| [**LaST0: Latent Spatio-Temporal Chain-of-Thought for Robotic Vision–Language–Action Model**](https://arxiv.org/pdf/2601.05248) <br><sub>Secondary: `3.2 Reasoning-Aware Action Generation`</sub> | 2026-01 | Dual-system VLA with latent spatio-temporal CoT and mixture-of-transformers for efficient reasoning and high-frequency action. | - |
-| [![Star](https://img.shields.io/github/stars/jiayueru/Video2Act.svg?style=social&label=Star)](https://github.com/jiayueru/Video2Act) <br> [**Video2Act: A Dual-System Video Diffusion Policy with Robotic Spatio-Motional Modeling**](https://arxiv.org/pdf/2512.03044) | 2025-12 | Asynchronous dual-system VLA with slow VDM reasoning and fast DiT action head. | [Code](https://github.com/jiayueru/Video2Act) / [Website](https://video2act.github.io/) |
-| [**MOTVLA: A VISION-LANGUAGE-ACTION MODEL WITH UNIFIED FAST-SLOW REASONING**](https://arxiv.org/pdf/2510.18337) | 2025-10 | Mixture-of-Transformers VLA with unified fast–slow reasoning via generalist VLM and domain-specific expert. | [Website](https://motvla.github.io/MoTVLA-website/) |
-| [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]() <br> [**ThinkAct: Vision-Language-Action Reasoning via Reinforced Visual Latent Planning**](https://arxiv.org/pdf/2507.16815) | 2025-07 | Dual-system VLA with reinforced visual latent planning bridging reasoning and action execution. | [Website](https://jasper0314-huang.github.io/thinkact-vla/) |
-| [![Star](https://img.shields.io/github/stars/CHEN-H01/Fast-in-Slow.svg?style=social&label=Star)](https://github.com/CHEN-H01/Fast-in-Slow) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]() <br> [**Fast-in-Slow: A Dual-System Foundation Model Unifying Fast Manipulation within Slow Reasoning**](https://arxiv.org/pdf/2506.01953) | 2025-06 | Unified dual-system VLA embedding fast execution module within VLM-based reasoning model. | [Code](https://github.com/CHEN-H01/Fast-in-Slow) / [Website](https://fast-in-slow.github.io/) |
-| [![Star](https://img.shields.io/github/stars/OpenHelix-Team/OpenHelix.svg?style=social&label=Star)](https://github.com/OpenHelix-Team/OpenHelix) <br> [**OPENHELIX: A Short Survey, Empirical Analysis, and Open-Source Dual-System VLA Model for Robotic Manipulation**](https://arxiv.org/pdf/2505.03912) | 2025-05 | Open-source dual-system VLA with systematic structural evaluation and low-cost design for practical deployment. | [Code](https://github.com/OpenHelix-Team/OpenHelix) / [Website](https://openhelix-robot.github.io/) |
-| [![Star](https://img.shields.io/github/stars/hume-vla/hume.svg?style=social&label=Star)](https://github.com/hume-vla/hume) <br> [**Hume: Introducing System-2 Thinking in Visual-Language-Action Model**](https://arxiv.org/pdf/2505.21432) | 2025-05 | Dual-system VLA with value-guided slow thinking and lightweight reactive action denoising. | [Code](https://github.com/hume-vla/hume) / [Website](https://hume-vla.github.io/) |
-| [![Publish](https://img.shields.io/badge/Conference-CoRL%202024-blue)]() <br> [**HiRT: Enhancing Robotic Control with Hierarchical Robot Transformers**](https://arxiv.org/pdf/2410.05273) | 2024-10 | Hierarchical VLA with low-frequency VLM reasoning and high-frequency vision-based control policy. | - |
-| [**TOWARDS SYNERGISTIC, GENERALIZED AND EFFICIENT DUAL-SYSTEM FOR ROBOTIC MANIPULATION**](https://arxiv.org/pdf/2410.08001) | 2024-10 | Synergistic dual-system VLA combining generalist reasoning and lightweight specialist diffusion policy for efficient control. | [Website](https://robodual.github.io/) |
+- [**TacMamba: A Tactile History Compression Adapter Bridging Fast Reflexes and Slow VLA Reasoning**](https://arxiv.org/pdf/2603.01700)
+
+  🔥 New (`2026-03`) Tactile history compression that aligns high-frequency tactile control with slower visual reasoning.
+
+- [**StreamVLA: Breaking the Reason-Act Cycle via Completion-State Gating**](https://arxiv.org/pdf/2602.01100)
+
+  (`2026-02`) Lock-and-gated selective slow reasoning. <sub>Sec. 4.2</sub>
+
+- [**LaST0: Latent Spatio-Temporal Chain-of-Thought for Robotic Vision–Language–Action Model**](https://arxiv.org/pdf/2601.05248)
+
+  (`2026-01`) Latent spatio-temporal CoT with a mixture-of-transformers design. <sub>Sec. 3.2</sub>
+
+- [**Video2Act: A Dual-System Video Diffusion Policy with Robotic Spatio-Motional Modeling**](https://arxiv.org/pdf/2512.03044) [![Star](https://img.shields.io/github/stars/jiayueru/Video2Act.svg?style=social&label=Star)](https://github.com/jiayueru/Video2Act)
+
+  (`2025-12`) Dual-system VLA with slow VDM reasoning.
+
+- [**MOTVLA: A VISION-LANGUAGE-ACTION MODEL WITH UNIFIED FAST-SLOW REASONING**](https://arxiv.org/pdf/2510.18337)
+
+  (`2025-10`) Mixture-of-Transformers VLA with unified fast-slow reasoning.
+
+- [**ThinkAct: Vision-Language-Action Reasoning via Reinforced Visual Latent Planning**](https://arxiv.org/pdf/2507.16815) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]()
+
+  (`2025-07`) Reinforced visual latent planning that bridges reasoning and action execution.
+
+- [**Fast-in-Slow: A Dual-System Foundation Model Unifying Fast Manipulation within Slow Reasoning**](https://arxiv.org/pdf/2506.01953) [![Star](https://img.shields.io/github/stars/CHEN-H01/Fast-in-Slow.svg?style=social&label=Star)](https://github.com/CHEN-H01/Fast-in-Slow) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]()
+
+  (`2025-06`) Fast execution module within VLM-based reasoning model.
+
+- [**OPENHELIX: A Short Survey, Empirical Analysis, and Open-Source Dual-System VLA Model for Robotic Manipulation**](https://arxiv.org/pdf/2505.03912) [![Star](https://img.shields.io/github/stars/OpenHelix-Team/OpenHelix.svg?style=social&label=Star)](https://github.com/OpenHelix-Team/OpenHelix)
+
+  (`2025-05`) Systematic structural evaluation with a low-cost design.
+
+- [**Hume: Introducing System-2 Thinking in Visual-Language-Action Model**](https://arxiv.org/pdf/2505.21432) [![Star](https://img.shields.io/github/stars/hume-vla/hume.svg?style=social&label=Star)](https://github.com/hume-vla/hume)
+
+  (`2025-05`) Value-guided slow thinking with lightweight reactive action denoising.
+
+- [**HiRT: Enhancing Robotic Control with Hierarchical Robot Transformers**](https://arxiv.org/pdf/2410.05273) [![Publish](https://img.shields.io/badge/Conference-CoRL%202024-blue)]()
+
+  (`2024-10`) Low-frequency VLM reasoning with a high-frequency vision-based control policy.
+
+- [**TOWARDS SYNERGISTIC, GENERALIZED AND EFFICIENT DUAL-SYSTEM FOR ROBOTIC MANIPULATION**](https://arxiv.org/pdf/2410.08001)
+
+  (`2024-10`) Generalist reasoning with a lightweight specialist diffusion policy.
+
 
 ---
 
@@ -134,22 +207,66 @@ Since visual tokens dominate attention cost and KV memory, this category focuses
 > Compress or prune visual tokens before they are consumed by the policy.
 Methods selectively retain task-relevant spatial information (foreground, geometry, semantics) to reduce attention cost while preserving critical signals.
 
-| Title | Date | Key Idea | Resources |
-|:--|:--:|:--|:--:|
-| [**Think Proprioceptively: Embodied Visual Reasoning for VLA Manipulation**](https://arxiv.org/pdf/2602.06575) | 2026-02 | Text-tokenized early proprioception fusion enabling aggressive visual token reduction in VLA. | - |
-| [**HiST-VLA: A Hierarchical Spatio-Temporal Vision-Language-Action Model for End-to-End Autonomous Driving**](https://arxiv.org/pdf/2602.13329) <br><sub>Domain: `AD (Autonomous Driving)`</sub> | 2026-02 | Dynamic token fusion-based sparsification for efficient hierarchical VLA trajectory planning. | - |
-| [**DTP:A SIMPLE YET EFFECTIVE DISTRACTING TOKEN PRUNINGFRAMEWORK FOR VISION-LANGUAGE ACTION MODELS**](https://arxiv.org/pdf/2601.16065) | 2026-01 | Dynamic distracting token pruning to remove task-irrelevant visual tokens during VLA inference. | [Code](https://anonymous.4open.science/r/CBD3) |
-| [![Star](https://img.shields.io/github/stars/Jasper-aaa/TEAM-VLA.svg?style=social&label=Star)](https://github.com/Jasper-aaa/TEAM-VLA) <br> [**Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models**](https://arxiv.org/pdf/2512.09927) | 2025-12 | Training-free dynamic token expansion and merging for efficient VLA inference. | [Code](https://github.com/Jasper-aaa/TEAM-VLA) |
-| [![Star](https://img.shields.io/github/stars/JiuTian-VL/SemanticVLA.svg?style=social&label=Star)](https://github.com/JiuTian-VL/SemanticVLA) [![Publish](https://img.shields.io/badge/Conference-AAAI%202026-blue)]() <br> [**SemanticVLA: Semantic-Aligned Sparsification and Enhancement for Efficient Robotic Manipulation**](https://arxiv.org/pdf/2511.10518) | 2025-11 | Semantic-aligned dual visual pruning with hierarchical fusion for sparsified VLA perception. | [Code](https://github.com/JiuTian-VL/SemanticVLA) |
-| [![Star](https://img.shields.io/github/stars/MINT-SJTU/VLA-Pruner.svg?style=social&label=Star)](https://github.com/MINT-SJTU/VLA-Pruner) <br> [**VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference**](https://arxiv.org/pdf/2511.16449) | 2025-11 | Dual-objective visual token pruning aligned with semantic understanding and action execution for efficient VLA inference. | [Code](https://github.com/MINT-SJTU/VLA-Pruner) |
-| [**COMPRESSOR-VLA: INSTRUCTION-GUIDED VISUAL TOKEN COMPRESSION FOR EFFICIENT ROBOTIC MANIPULATION**](https://arxiv.org/pdf/2511.18950) | 2025-11 | Instruction-conditioned hybrid visual token compression with semantic distillation and spatial refinement for efficient VLA inference. | - |
-| [![Star](https://img.shields.io/github/stars/LiAutoAD/LightVLA.svg?style=social&label=Star)](https://github.com/LiAutoAD/LightVLA) <br> [**The Better You Learn, The Smarter You Prune: Differentiable Token Pruning for VLA**](https://arxiv.org/pdf/2509.12594) | 2025-09 | Differentiable adaptive visual token pruning via dynamic query-based importance estimation for efficient VLA inference. | [Code](https://github.com/LiAutoAD/LightVLA) / [Website](https://liauto-research.github.io/LightVLA/) |
-| [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]() <br> [**ACTION-AWARE DYNAMIC PRUNING FOR EFFICIENT VISION-LANGUAGE-ACTION MANIPULATION**](https://arxiv.org/pdf/2509.22093) | 2025-09 | Action-aware dynamic visual token pruning with trajectory-conditioned gating for efficient VLA inference. | - |
-| [**SpecPrune-VLA: Accelerating VLA Models via Action-Aware Self-Speculative Pruning**](https://arxiv.org/pdf/2509.05614) | 2025-09 | Spatial-temporal consistent two-level visual token pruning with action-aware control for efficient VLA inference. | - |
-| [**FastDriveVLA: Efficient End-to-End Driving via Plug-and-Play Reconstruction-based Token Pruning**](https://arxiv.org/pdf/2507.23318) <br><sub>Domain: `AD (Autonomous Driving)`</sub> | 2025-07 | Reconstruction-based foreground-aware visual token pruning for efficient VLA inference in autonomous driving. | - |
-| [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]() <br> [**EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models**](https://www.arxiv.org/pdf/2506.10100) <br><sub>Secondary: `2.2 Temporal Sharing and Reuse`</sub> | 2025-06 | Training-free holistic VLA acceleration via layer pruning, task-aware visual token selection, and temporal feature reuse in diffusion head. | - |
-| [**Think Twice, Act Once: Token-Aware Compression and Action Reuse for Efficient Inference in VLA Models**](https://arxiv.org/pdf/2505.21200) <br><sub>Secondary: `2.2 Temporal Sharing and Reuse`</sub> | 2025-05 | Training-free action reuse with information-guided visual token pruning for efficient VLA inference. | - |
-| [![Star](https://img.shields.io/github/stars/Max-Fu/otter.svg?style=social&label=Star)](https://github.com/Max-Fu/otter) [![Publish](https://img.shields.io/badge/Conference-ICML%202025-blue)]() <br> [**OTTER: A Vision-Language-Action Model with Text-Aware Visual Feature Extraction**](https://arxiv.org/pdf/2503.03734) | 2025-03 | Text-aware selective visual feature extraction to preserve pretrained VLM alignment in VLA. | [Code](https://github.com/Max-Fu/otter) / [Website](https://ottervla.github.io/) |
+- [**BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model**](https://arxiv.org/pdf/2602.20566)
+
+  🔥 New (`2026-02`) Hierarchical multi-view token pruning that removes redundant regions and camera views.
+
+- [**Think Proprioceptively: Embodied Visual Reasoning for VLA Manipulation**](https://arxiv.org/pdf/2602.06575)
+
+  (`2026-02`) Early proprioception fusion for aggressive visual token reduction.
+
+- [**HiST-VLA: A Hierarchical Spatio-Temporal Vision-Language-Action Model for End-to-End Autonomous Driving**](https://arxiv.org/pdf/2602.13329)
+
+  (`2026-02`) Token fusion-based sparsification for hierarchical trajectory planning. <sub>AD</sub>
+
+- [**DTP:A SIMPLE YET EFFECTIVE DISTRACTING TOKEN PRUNINGFRAMEWORK FOR VISION-LANGUAGE ACTION MODELS**](https://arxiv.org/pdf/2601.16065)
+
+  (`2026-01`) Distracting token pruning to remove task-irrelevant visual tokens. <sub>[Code](https://anonymous.4open.science/r/CBD3)</sub>
+
+- [**Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models**](https://arxiv.org/pdf/2512.09927) [![Star](https://img.shields.io/github/stars/Jasper-aaa/TEAM-VLA.svg?style=social&label=Star)](https://github.com/Jasper-aaa/TEAM-VLA)
+
+  (`2025-12`) Dynamic token expansion and merging.
+
+- [**SemanticVLA: Semantic-Aligned Sparsification and Enhancement for Efficient Robotic Manipulation**](https://arxiv.org/pdf/2511.10518) [![Star](https://img.shields.io/github/stars/JiuTian-VL/SemanticVLA.svg?style=social&label=Star)](https://github.com/JiuTian-VL/SemanticVLA) [![Publish](https://img.shields.io/badge/Conference-AAAI%202026-blue)]()
+
+  (`2025-11`) Dual visual pruning with hierarchical fusion for sparsified VLA perception.
+
+- [**VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference**](https://arxiv.org/pdf/2511.16449) [![Star](https://img.shields.io/github/stars/MINT-SJTU/VLA-Pruner.svg?style=social&label=Star)](https://github.com/MINT-SJTU/VLA-Pruner)
+
+  (`2025-11`) Dual-objective visual token pruning aligned with semantic understanding.
+
+- [**COMPRESSOR-VLA: INSTRUCTION-GUIDED VISUAL TOKEN COMPRESSION FOR EFFICIENT ROBOTIC MANIPULATION**](https://arxiv.org/pdf/2511.18950)
+
+  (`2025-11`) Hybrid visual token compression with semantic distillation.
+
+- [**The Better You Learn, The Smarter You Prune: Differentiable Token Pruning for VLA**](https://arxiv.org/pdf/2509.12594) [![Star](https://img.shields.io/github/stars/LiAutoAD/LightVLA.svg?style=social&label=Star)](https://github.com/LiAutoAD/LightVLA)
+
+  (`2025-09`) Adaptive visual token pruning via dynamic query-based importance estimation.
+
+- [**ACTION-AWARE DYNAMIC PRUNING FOR EFFICIENT VISION-LANGUAGE-ACTION MANIPULATION**](https://arxiv.org/pdf/2509.22093) [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]()
+
+  (`2025-09`) Action-aware dynamic visual token pruning with trajectory-conditioned gating.
+
+- [**SpecPrune-VLA: Accelerating VLA Models via Action-Aware Self-Speculative Pruning**](https://arxiv.org/pdf/2509.05614)
+
+  (`2025-09`) Spatial-temporally consistent two-level visual token pruning with action-aware control.
+
+- [**FastDriveVLA: Efficient End-to-End Driving via Plug-and-Play Reconstruction-based Token Pruning**](https://arxiv.org/pdf/2507.23318)
+
+  (`2025-07`) Reconstruction-based foreground-aware visual token pruning. <sub>AD</sub>
+
+- [**EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models**](https://www.arxiv.org/pdf/2506.10100) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]()
+
+  (`2025-06`) Holistic VLA acceleration via layer pruning and task-aware visual token selection. <sub>Sec. 2.2</sub>
+
+- [**Think Twice, Act Once: Token-Aware Compression and Action Reuse for Efficient Inference in VLA Models**](https://arxiv.org/pdf/2505.21200)
+
+  (`2025-05`) Action reuse with information-guided visual token pruning. <sub>Sec. 2.2</sub>
+
+- [**OTTER: A Vision-Language-Action Model with Text-Aware Visual Feature Extraction**](https://arxiv.org/pdf/2503.03734) [![Star](https://img.shields.io/github/stars/Max-Fu/otter.svg?style=social&label=Star)](https://github.com/Max-Fu/otter) [![Publish](https://img.shields.io/badge/Conference-ICML%202025-blue)]()
+
+  (`2025-03`) Text-aware selective visual feature extraction.
+
 
 
 <a id="temporal-sharing-and-reuse"></a>
@@ -157,13 +274,34 @@ Methods selectively retain task-relevant spatial information (foreground, geomet
 > Exploit temporal consistency to avoid recomputing stable information across timesteps.
 This includes feature fusion, KV reuse/compression, or temporal token caching mechanisms that reduce redundant computation in sequential decision-making.
 
-| Title | Date | Key Idea | Resources |
-|:--|:--:|:--|:--:|
-| [![Star](https://img.shields.io/github/stars/JiahanFan/LAC.svg?style=social&label=Star)](https://github.com/JiahanFan/LAC) <br> [**Learning to Accelerate Vision-Language-Action Models through Adaptive Visual Token Caching**](https://arxiv.org/pdf/2602.00500) <br><sub>Secondary: `4.2 Inference Efficiency Techniques`</sub> | 2026-02 | Learnable task-aware token caching with differentiable selection for efficient VLA inference. | [Code](https://github.com/JiahanFan/LAC) |
-| [**Efficient Long-Horizon Vision-Language-Action Models via Static-Dynamic Disentanglement**](https://arxiv.org/pdf/2602.03983) | 2026-02 | Static-dynamic token disentanglement with KV reuse for efficient long-horizon VLA inference. | - |
-| [**KV-Efficient VLA: A Method of Speed up Vision Language Model with RNN-Gated Chunked KV Cache**](https://arxiv.org/pdf/2509.21354) | 2025-09 | Chunk-based KV cache compression with recurrent utility gating for scalable VLA inference. | - |
-| [![Star](https://img.shields.io/github/stars/PKU-XLab/TTF-VLA.svg?style=social&label=Star)](https://github.com/PKU-XLab/TTF-VLA) <br> [**TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for VLA Models**](https://arxiv.org/pdf/2508.19257) | 2025-08 | Training-free temporal token fusion with selective historical feature integration for robust VLA inference. | [Code](https://github.com/PKU-XLab/TTF-VLA) |
-| [![Star](https://img.shields.io/github/stars/siyuhsu/vla-cache.svg?style=social&label=Star)](https://github.com/siyuhsu/vla-cache) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]() <br> [**VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching**](https://arxiv.org/pdf/2502.02175) | 2025-02 | Adaptive visual token KV caching and reuse across frames for training-free VLA acceleration. | [Code](https://github.com/siyuhsu/vla-cache) / [Website](https://vla-cache.github.io/) |
+- [**History-Conditioned Spatio-Temporal Visual Token Pruning for Efficient Vision-Language Navigation**](https://arxiv.org/pdf/2603.06480)
+
+  🔥 New (`2026-03`) Training-free spatio-temporal token pruning for current views and navigation history. <sub>Sec. 2.1 · VLN</sub>
+
+- [**FUTURE-VLA: Forecasting Unified Trajectories Under Real-time Execution**](https://arxiv.org/pdf/2602.15882) [![Star](https://img.shields.io/github/stars/fan-jj24/FUTURE-VLA.svg?style=social&label=Star)](https://github.com/fan-jj24/FUTURE-VLA)
+
+  🔥 New (`2026-02`) Temporally adaptive compression for long multi-view histories with constant-latency execution.
+
+- [**Learning to Accelerate Vision-Language-Action Models through Adaptive Visual Token Caching**](https://arxiv.org/pdf/2602.00500) [![Star](https://img.shields.io/github/stars/JiahanFan/LAC.svg?style=social&label=Star)](https://github.com/JiahanFan/LAC)
+
+  (`2026-02`) Task-aware token caching with differentiable selection. <sub>Sec. 4.2</sub>
+
+- [**Efficient Long-Horizon Vision-Language-Action Models via Static-Dynamic Disentanglement**](https://arxiv.org/pdf/2602.03983)
+
+  (`2026-02`) Static-dynamic token disentanglement with KV reuse.
+
+- [**KV-Efficient VLA: A Method of Speed up Vision Language Model with RNN-Gated Chunked KV Cache**](https://arxiv.org/pdf/2509.21354)
+
+  (`2025-09`) Chunk-based KV cache compression with recurrent utility gating.
+
+- [**TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for VLA Models**](https://arxiv.org/pdf/2508.19257) [![Star](https://img.shields.io/github/stars/PKU-XLab/TTF-VLA.svg?style=social&label=Star)](https://github.com/PKU-XLab/TTF-VLA)
+
+  (`2025-08`) Temporal token fusion with selective historical feature integration.
+
+- [**VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching**](https://arxiv.org/pdf/2502.02175) [![Star](https://img.shields.io/github/stars/siyuhsu/vla-cache.svg?style=social&label=Star)](https://github.com/siyuhsu/vla-cache) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]()
+
+  (`2025-02`) Visual token KV caching and reuse.
+
 
 ---
 
@@ -178,20 +316,70 @@ Instead of modifying perception or architecture, this category focuses on how ac
 > Improve efficiency by redesigning action representation or decoding mechanisms without inserting explicit reasoning steps.
 This includes action tokenizers, discrete/flow-based decoders, block-wise or parallel decoding for actions, and compact action parameterizations.
 
-| Title | Date | Key Idea | Resources |
-|:--|:--:|:--|:--:|
-| [![Star](https://img.shields.io/github/stars/HHYHRHY/MM-ACT.svg?style=social&label=Star)](https://github.com/HHYHRHY/MM-ACT) <br> [**MM-ACT: Learn from Multimodal Parallel Generation to Act**](https://arxiv.org/pdf/2512.00975) <br><sub>Secondary: `4.2 Inference Efficiency Techniques`</sub> | 2025-12 | Unified multimodal VLA with parallel action decoding for efficient generation. | [Code](https://github.com/HHYHRHY/MM-ACT) |
-| [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]() <br> [**FASTER: TOWARD EFFICIENT AUTOREGRESSIVE VISION LANGUAGE ACTION MODELING VIA NEURAL ACTION TOKENIZATION**](https://arxiv.org/pdf/2512.04952) | 2025-12 | Learnable high-compression action tokenizer with block-wise autoregressive decoding for efficient VLA. | - |
-| [![Star](https://img.shields.io/github/stars/YuhuaJiang2002/AsyncVLA.svg?style=social&label=Star)](https://github.com/YuhuaJiang2002/AsyncVLA) <br> [**AsyncVLA: Asynchronous Flow Matching for Vision-Language-Action Models**](https://arxiv.org/pdf/2511.14148) | 2025-11 | Asynchronous flow matching with action-aware non-uniform scheduling and selective refinement for efficient VLA action generation. | [Code](https://github.com/YuhuaJiang2002/AsyncVLA) |
-| [![Star](https://img.shields.io/github/stars/OpenHelix-Team/UD-VLA.svg?style=social&label=Star)](https://github.com/OpenHelix-Team/UD-VLA) [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]() <br> [**UNIFIED DIFFUSION VLA: VISION-LANGUAGE-ACTION MODEL VIA JOINT DISCRETE DENOISING DIFFUSION PROCESS**](https://arxiv.org/pdf/2511.01718) | 2025-11 | Unified joint diffusion denoising (JD3P) for synchronous image–action generation with faster inference. | [Code](https://github.com/OpenHelix-Team/UD-VLA/tree/main) / [Website](https://irpn-eai.github.io/UD-VLA.github.io/) |
-| [**OMNISAT: COMPACT ACTION TOKEN, FASTER AUTOREGRESSION**](https://arxiv.org/pdf/2510.09667) | 2025-10 | Compact residual-quantized action tokenizer (OmniSAT) for shortening autoregressive VLA action sequences. | [Website](https://annoymoushh.github.io/) |
-| [![Star](https://img.shields.io/github/stars/dunnolab/NinA.svg?style=social&label=Star)](https://github.com/dunnolab/NinA) <br> [**NinA: Normalizing Flows in Action. Training VLA Models with Normalizing Flows**](https://arxiv.org/pdf/2508.16845) | 2025-08 | Normalizing Flow action decoder enabling one-shot sampling for fast VLA inference. | [Code](https://github.com/dunnolab/NinA/) |
-| [**DISCRETE DIFFUSION VLA: BRINGING DISCRETE DIFFUSION TO ACTION DECODING IN VISION-LANGUAGE-ACTION POLICIES**](https://arxiv.org/pdf/2508.20072) | 2025-08 | Unified discrete diffusion decoder with adaptive parallel refinement for efficient VLA action generation. | - |
-| [![Star](https://img.shields.io/github/stars/kscalelabs/evla.svg?style=social&label=Star)](https://github.com/kscalelabs/evla) <br> [**EdgeVLA: Efficient Vision-Language-Action Models**](https://arxiv.org/pdf/2507.14049) <br><sub>Secondary: `1.1 Static Backbone Selection`</sub> | 2025-07 | Non-autoregressive end-effector prediction and small language model substitution for faster VLA inference. | [Code](https://github.com/kscalelabs/evla) |
-| [![Star](https://img.shields.io/github/stars/LukeLIN-web/VOTE.svg?style=social&label=Star)](https://github.com/LukeLIN-web/VOTE) <br> [**VOTE: Vision-Language-Action Optimization with Trajectory Ensemble Voting**](https://arxiv.org/pdf/2507.05116) <br><sub>Secondary: `4.2 Inference Efficiency Techniques`</sub> | 2025-07 | Parallel low-token action generation with voting-based inference ensemble for ultra-fast VLA deployment. | [Code](https://github.com/LukeLIN-web/VOTE) |
-| [![Star](https://img.shields.io/github/stars/LukeLIN-web/VOTE.svg?style=social&label=Star)](https://github.com/LukeLIN-web/VOTE) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]() <br> [**Real-Time Execution of Action Chunking Flow Policies**](https://arxiv.org/pdf/2506.07339) | 2025-06 | Asynchronous real-time chunking with freeze-and-inpaint strategy for latency-robust VLA inference. | [Code](https://github.com/LukeLIN-web/VOTE) / [Website](https://www.pi.website/research/real_time_chunking) |
-| [**FAST: Efficient Action Tokenization for Vision-Language-Action Models**](https://arxiv.org/pdf/2501.09747) | 2025-01 | Frequency-space action tokenization (FAST) for efficient autoregressive VLA training on high-frequency control. | [Website](https://www.pi.website/research/fast) |
-| [![Star](https://img.shields.io/github/stars/tonyzhaozh/aloha.svg?style=social&label=Star)](https://github.com/tonyzhaozh/aloha) [![Publish](https://img.shields.io/badge/Conference-RSS%202023-blue)]() <br> [**Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware**](https://arxiv.org/pdf/2304.13705) | 2023-04 | Action Chunking with Transformers (ACT) for temporally consistent multi-step action generation. | [Code](https://github.com/tonyzhaozh/aloha) / [Website](https://tonyzhaozh.github.io/aloha/) |
+- [**Unifying Language-Action Understanding and Generation for Autonomous Driving**](https://arxiv.org/pdf/2603.01441)
+
+  🔥 New (`2026-03`) Unified language-action codebook with coarse-to-fine decoding for efficient driving control. <sub>AD</sub>
+
+- [**VLA Knows Its Limits**](https://arxiv.org/pdf/2602.21445)
+
+  🔥 New (`2026-02`) Dynamic action-horizon adjustment using attention-derived execution limits.
+
+- [**Global Prior Meets Local Consistency: Dual-Memory Augmented Vision-Language-Action Model for Efficient Robotic Manipulation**](https://arxiv.org/pdf/2602.20200)
+
+  🔥 New (`2026-02`) Dual-memory generative policy that shortens the denoising path with retrieved task-level action priors.
+
+- [**ActionCodec: What Makes for Good Action Tokenizers**](https://arxiv.org/pdf/2602.15397)
+
+  🔥 New (`2026-02`) Optimization-oriented action tokenizer that improves temporal overlap and vocabulary efficiency.
+
+- [**MM-ACT: Learn from Multimodal Parallel Generation to Act**](https://arxiv.org/pdf/2512.00975) [![Star](https://img.shields.io/github/stars/HHYHRHY/MM-ACT.svg?style=social&label=Star)](https://github.com/HHYHRHY/MM-ACT)
+
+  (`2025-12`) Parallel action decoding. <sub>Sec. 4.2</sub>
+
+- [**FASTER: TOWARD EFFICIENT AUTOREGRESSIVE VISION LANGUAGE ACTION MODELING VIA NEURAL ACTION TOKENIZATION**](https://arxiv.org/pdf/2512.04952) [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]()
+
+  (`2025-12`) High-compression action tokenizer with block-wise autoregressive decoding.
+
+- [**AsyncVLA: Asynchronous Flow Matching for Vision-Language-Action Models**](https://arxiv.org/pdf/2511.14148) [![Star](https://img.shields.io/github/stars/YuhuaJiang2002/AsyncVLA.svg?style=social&label=Star)](https://github.com/YuhuaJiang2002/AsyncVLA)
+
+  (`2025-11`) Flow matching with action-aware non-uniform scheduling.
+
+- [**UNIFIED DIFFUSION VLA: VISION-LANGUAGE-ACTION MODEL VIA JOINT DISCRETE DENOISING DIFFUSION PROCESS**](https://arxiv.org/pdf/2511.01718) [![Star](https://img.shields.io/github/stars/OpenHelix-Team/UD-VLA.svg?style=social&label=Star)](https://github.com/OpenHelix-Team/UD-VLA) [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]()
+
+  (`2025-11`) Joint diffusion denoising for synchronous image-action generation.
+
+- [**OMNISAT: COMPACT ACTION TOKEN, FASTER AUTOREGRESSION**](https://arxiv.org/pdf/2510.09667)
+
+  (`2025-10`) Residual-quantized action tokenizer (OmniSAT) for shortening autoregressive VLA action sequences.
+
+- [**NinA: Normalizing Flows in Action. Training VLA Models with Normalizing Flows**](https://arxiv.org/pdf/2508.16845) [![Star](https://img.shields.io/github/stars/dunnolab/NinA.svg?style=social&label=Star)](https://github.com/dunnolab/NinA)
+
+  (`2025-08`) Action decoder enabling one-shot sampling for fast VLA inference.
+
+- [**DISCRETE DIFFUSION VLA: BRINGING DISCRETE DIFFUSION TO ACTION DECODING IN VISION-LANGUAGE-ACTION POLICIES**](https://arxiv.org/pdf/2508.20072)
+
+  (`2025-08`) Discrete diffusion decoder with adaptive parallel refinement.
+
+- [**EdgeVLA: Efficient Vision-Language-Action Models**](https://arxiv.org/pdf/2507.14049) [![Star](https://img.shields.io/github/stars/kscalelabs/evla.svg?style=social&label=Star)](https://github.com/kscalelabs/evla)
+
+  (`2025-07`) End-effector prediction with a smaller language model. <sub>Sec. 1.1</sub>
+
+- [**VOTE: Vision-Language-Action Optimization with Trajectory Ensemble Voting**](https://arxiv.org/pdf/2507.05116) [![Star](https://img.shields.io/github/stars/LukeLIN-web/VOTE.svg?style=social&label=Star)](https://github.com/LukeLIN-web/VOTE)
+
+  (`2025-07`) Low-token action generation with a voting-based inference ensemble. <sub>Sec. 4.2</sub>
+
+- [**Real-Time Execution of Action Chunking Flow Policies**](https://arxiv.org/pdf/2506.07339) [![Star](https://img.shields.io/github/stars/LukeLIN-web/VOTE.svg?style=social&label=Star)](https://github.com/LukeLIN-web/VOTE) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]()
+
+  (`2025-06`) Real-time chunking with a freeze-and-inpaint strategy.
+
+- [**FAST: Efficient Action Tokenization for Vision-Language-Action Models**](https://arxiv.org/pdf/2501.09747)
+
+  (`2025-01`) Frequency-space action tokenization (FAST).
+
+- [**Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware**](https://arxiv.org/pdf/2304.13705) [![Star](https://img.shields.io/github/stars/tonyzhaozh/aloha.svg?style=social&label=Star)](https://github.com/tonyzhaozh/aloha) [![Publish](https://img.shields.io/badge/Conference-RSS%202023-blue)]()
+
+  (`2023-04`) Action Chunking with Transformers for multi-step action generation.
+
 
 
 <a id="reasoning-aware-action-generation"></a>
@@ -200,14 +388,30 @@ This includes action tokenizers, discrete/flow-based decoders, block-wise or par
 ## 💡 3.2 Reasoning-Aware Action Generation
 Reasoning can take the form of textual CoT, latent reasoning, visual subgoals, or world-model rollouts, and may be optimized via caching or latent compression.
 
-| Title | Date | Key Idea | Resources |
-|:--|:--:|:--|:--:|
-| [![Star](https://img.shields.io/github/stars/LoveJu1y/LaRA-VLA.svg?style=social&label=Star)](https://github.com/LoveJu1y/LaRA-VLA) <br> [**Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models**](https://www.arxiv.org/pdf/2602.01166) | 2026-02 | Latent embodied reasoning replacing explicit CoT for low-latency VLA control. | [Code](https://github.com/LoveJu1y/LaRA-VLA) / [Website](https://loveju1y.github.io/Latent-Reasoning-VLA/) |
-| [**Fast-ThinkAct: Efficient Vision-Language-Action Reasoning via Verbalizable Latent Planning**](https://arxiv.org/pdf/2601.09708) | 2026-01 | Latent chain-of-thought distillation for compact and low-latency reasoning in VLA. | [Website](https://jasper0314-huang.github.io/fast-thinkact/) |
-| [**Latent Chain-of-Thought World Modeling for End-to-End Autonomous Driving**](https://arxiv.org/pdf/2512.10226) <br><sub>Domain: `AD (Autonomous Driving)`</sub> | 2025-12 | Key Idea: Action-aligned latent chain-of-thought reasoning for efficient end-to-end driving VLA. | - |
-| [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]() <br> [**MEMER: SCALING UP MEMORY FOR ROBOT CONTROL VIA EXPERIENCE RETRIEVAL**](https://arxiv.org/pdf/2510.20328) <br><sub>Secondary: `2.2 Temporal Sharing and Reuse`</sub> | 2025-10 | Hierarchical VLA with memory-aware high-level policy selecting relevant keyframes to guide low-level execution. | [Website](https://jen-pan.github.io/memer/) |
-| [**Training Strategies for Efficient Embodied Reasoning**](https://arxiv.org/pdf/2505.08243) | 2025-05 | Lightweight alternative robot reasoning recipes enabling faster CoT-based VLA inference. | [Website](https://ecot-lite.github.io/) |
-| [![Publish](https://img.shields.io/badge/Conference-CVPR%202025-blue)]() <br> [**CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models**](https://arxiv.org/pdf/2503.22020) | 2025-03 | Explicit visual chain-of-thought reasoning via future frame prediction before action generation. | [Website](https://cot-vla.github.io/) |
+- [**Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models**](https://www.arxiv.org/pdf/2602.01166) [![Star](https://img.shields.io/github/stars/LoveJu1y/LaRA-VLA.svg?style=social&label=Star)](https://github.com/LoveJu1y/LaRA-VLA)
+
+  (`2026-02`) Reasoning replacing explicit CoT.
+
+- [**Fast-ThinkAct: Efficient Vision-Language-Action Reasoning via Verbalizable Latent Planning**](https://arxiv.org/pdf/2601.09708)
+
+  (`2026-01`) Chain-of-thought distillation for compact, low-latency reasoning.
+
+- [**Latent Chain-of-Thought World Modeling for End-to-End Autonomous Driving**](https://arxiv.org/pdf/2512.10226)
+
+  (`2025-12`) Action-aligned latent chain-of-thought reasoning. <sub>AD</sub>
+
+- [**MEMER: SCALING UP MEMORY FOR ROBOT CONTROL VIA EXPERIENCE RETRIEVAL**](https://arxiv.org/pdf/2510.20328) [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]()
+
+  (`2025-10`) Memory-aware high-level policy selecting relevant keyframes to guide low-level execution. <sub>Sec. 2.2</sub>
+
+- [**Training Strategies for Efficient Embodied Reasoning**](https://arxiv.org/pdf/2505.08243)
+
+  (`2025-05`) Robot reasoning recipes enabling faster CoT-based VLA inference.
+
+- [**CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models**](https://arxiv.org/pdf/2503.22020) [![Publish](https://img.shields.io/badge/Conference-CVPR%202025-blue)]()
+
+  (`2025-03`) Visual chain-of-thought reasoning via future frame prediction before action generation.
+
 
 ---
 
@@ -222,20 +426,58 @@ This category addresses optimization redundancy and execution scheduling rather 
 > Reduce adaptation cost through improved optimization strategies.
 Includes parameter-efficient fine-tuning (PEFT), distillation, data distillation/selection, quantization-aware training and other methods that preserve performance under reduced training cost.
 
-| Title | Date | Key Idea | Resources |
-|:--|:--:|:--|:--:|
-| [![Star](https://img.shields.io/github/stars/AutoLab-SAI-SJTU/QVLA.svg?style=social&label=Star)](https://github.com/AutoLab-SAI-SJTU/QVLA) [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]() <br> [**QVLA: Not All Channels Are Equal in Vision-Language-Action Model's Quantization**](https://arxiv.org/pdf/2602.03782) | 2026-02 | Action-centric channel-wise mixed-bit quantization for efficient and robust VLA deployment. | [Code](https://github.com/AutoLab-SAI-SJTU/QVLA) |
-| [**RL-VLA3: REINFORCEMENT LEARNING VLA AC-CELERATING VIA FULL ASYNCHRONISM**](https://arxiv.org/pdf/2602.05765) | 2026-02 | Fully-asynchronous RL training pipeline for high-throughput VLA policy optimization. | - |
-| [**TwinRL-VLA: Digital Twin-Driven Reinforcement Learning for Real-World Robotic Manipulation**](https://arxiv.org/pdf/2602.09023) | 2026-02 | Digital twin-guided collaborative online RL for efficient real-world VLA exploration. | [Website](https://sites.google.com/view/twinrl/twinrl) |
-| [**HBVLA: Pushing 1-Bit Post-Training Quantization for Vision-Language-Action Models**](https://arxiv.org/pdf/2602.13710) | 2026-02 | Policy-aware Hessian-guided 1-bit binarization framework for efficient VLA deployment. | - |
-| [**Shallow-π: Knowledge Distillation for Flow-based VLAs**](https://arxiv.org/pdf/2601.20262) <br><sub>Secondary: `1.2 Dynamic Computation Pathways`</sub> | 2026-01 | Key Idea: Knowledge distillation-based transformer depth reduction for flow-based VLA models. | [Website](https://icsl-jeon.github.io/shallow-pi/) |
-| [**Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control**](https://arxiv.org/pdf/2512.11921) | 2025-12 | LoRA- and quantization-based resource-efficient fine-tuning of large VLA models for low-cost deployment. | - |
-| [![Publish](https://img.shields.io/badge/Conference-AAAI%202026-blue)]() <br> [**FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models**](https://arxiv.org/pdf/2511.16233) | 2025-11 | Data-centric generative data distillation (FT-NCFM) for efficient VLA training with compact coresets. | - |
-| [![Star](https://img.shields.io/github/stars/gooogleshanghai/ActDistill.svg?style=social&label=Star)](https://github.com/gooogleshanghai/ActDistill) <br> [**ActDistill: General Action-Guided Self-Derived Distillation for Efficient Vision-Language-Action Models**](https://arxiv.org/pdf/2511.18082) <br><sub>Secondary: `1.2 Dynamic Computation Pathways`</sub> | 2025-11 | Action-guided distillation with dynamically routed lightweight student for efficient VLA inference. | [Code](https://github.com/gooogleshanghai/ActDistill) |
-| [![Star](https://img.shields.io/github/stars/Tencent/VITA.svg?style=social&label=Star)](https://github.com/Tencent/VITA) <br> [**VITA-VLA: Efficiently Teaching Vision-Language Models to Act via Action Expert Distillation**](https://arxiv.org/pdf/2510.09607) | 2025-10 | Distillation-based transfer of action modeling from small policy to VLM for efficient VLA training. | [Code](https://github.com/Tencent/VITA/tree/VITA-VLA) / [Website](https://ltbai.github.io/VITA-VLA/) |
-| [![Star](https://img.shields.io/github/stars/ustcwhy/BitVLA.svg?style=social&label=Star)](https://github.com/ustcwhy/BitVLA) <br> [**BitVLA: 1-bit Vision-Language-Action Models for Robotics Manipulation**](https://arxiv.org/pdf/2506.07530) | 2025-06 | Ternary 1-bit Vision-Language-Action model with distillation-aware compression for memory-efficient deployment. | [Code](https://github.com/ustcwhy/BitVLA) |
-| [**Saliency-Aware Quantized Imitation Learning for Efficient Robotic Control**](https://arxiv.org/pdf/2505.15304) | 2025-05 | Saliency-aware quantization-aware training for low-bit efficient VLA deployment. | [Website](https://aiha-lab.github.io/sqil/) |
-| [![Star](https://img.shields.io/github/stars/moojink/openvla-oft.svg?style=social&label=Star)](https://github.com/moojink/openvla-oft) [![Publish](https://img.shields.io/badge/Conference-RSS%202025-blue)]() <br> [**Fine-Tuning VLA Models: Optimizing Speed and Success**](https://arxiv.org/pdf/2502.19645) <br><sub>Secondary: `4.2 Inference Efficiency Techniques`</sub> | 2025-02 | Optimized fine-tuning recipe with parallel decoding and action chunking for high-throughput VLA adaptation. | [Code](https://github.com/moojink/openvla-oft) / [Website](https://openvla-oft.github.io/) |
+- [**QuantVLA: Scale-Calibrated Post-Training Quantization for Vision-Language-Action Models**](https://arxiv.org/pdf/2602.20309) [![Star](https://img.shields.io/github/stars/AIoT-MLSys-Lab/QuantVLA.svg?style=social&label=Star)](https://github.com/AIoT-MLSys-Lab/QuantVLA)
+
+  🔥 New (`2026-02`) Scale-calibrated post-training quantization for low-bit VLA deployment.
+
+- [**QVLA: Not All Channels Are Equal in Vision-Language-Action Model's Quantization**](https://arxiv.org/pdf/2602.03782) [![Star](https://img.shields.io/github/stars/AutoLab-SAI-SJTU/QVLA.svg?style=social&label=Star)](https://github.com/AutoLab-SAI-SJTU/QVLA) [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]()
+
+  (`2026-02`) Channel-wise mixed-bit quantization for efficient deployment.
+
+- [**RL-VLA3: REINFORCEMENT LEARNING VLA AC-CELERATING VIA FULL ASYNCHRONISM**](https://arxiv.org/pdf/2602.05765)
+
+  (`2026-02`) RL training pipeline for high-throughput VLA policy optimization.
+
+- [**TwinRL-VLA: Digital Twin-Driven Reinforcement Learning for Real-World Robotic Manipulation**](https://arxiv.org/pdf/2602.09023)
+
+  (`2026-02`) Digital twin-guided RL for efficient real-world exploration.
+
+- [**HBVLA: Pushing 1-Bit Post-Training Quantization for Vision-Language-Action Models**](https://arxiv.org/pdf/2602.13710)
+
+  (`2026-02`) Hessian-guided 1-bit binarization framework.
+
+- [**Shallow-π: Knowledge Distillation for Flow-based VLAs**](https://arxiv.org/pdf/2601.20262)
+
+  (`2026-01`) Transformer depth reduction for flow-based VLA models. <sub>Sec. 1.2</sub>
+
+- [**Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control**](https://arxiv.org/pdf/2512.11921)
+
+  (`2025-12`) Resource-efficient fine-tuning of large VLA models for low-cost deployment.
+
+- [**FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models**](https://arxiv.org/pdf/2511.16233) [![Publish](https://img.shields.io/badge/Conference-AAAI%202026-blue)]()
+
+  (`2025-11`) Influence-aware generative data distillation for compact VLA training sets.
+
+- [**ActDistill: General Action-Guided Self-Derived Distillation for Efficient Vision-Language-Action Models**](https://arxiv.org/pdf/2511.18082) [![Star](https://img.shields.io/github/stars/gooogleshanghai/ActDistill.svg?style=social&label=Star)](https://github.com/gooogleshanghai/ActDistill)
+
+  (`2025-11`) Distillation with a dynamically routed lightweight student. <sub>Sec. 1.2</sub>
+
+- [**VITA-VLA: Efficiently Teaching Vision-Language Models to Act via Action Expert Distillation**](https://arxiv.org/pdf/2510.09607) [![Star](https://img.shields.io/github/stars/Tencent/VITA.svg?style=social&label=Star)](https://github.com/Tencent/VITA)
+
+  (`2025-10`) Transfer of action modeling from small policy to VLM.
+
+- [**BitVLA: 1-bit Vision-Language-Action Models for Robotics Manipulation**](https://arxiv.org/pdf/2506.07530) [![Star](https://img.shields.io/github/stars/ustcwhy/BitVLA.svg?style=social&label=Star)](https://github.com/ustcwhy/BitVLA)
+
+  (`2025-06`) Distillation-aware compression for memory-efficient VLA deployment.
+
+- [**Saliency-Aware Quantized Imitation Learning for Efficient Robotic Control**](https://arxiv.org/pdf/2505.15304)
+
+  (`2025-05`) Quantization-aware training for low-bit efficient VLA deployment.
+
+- [**Fine-Tuning VLA Models: Optimizing Speed and Success**](https://arxiv.org/pdf/2502.19645) [![Star](https://img.shields.io/github/stars/moojink/openvla-oft.svg?style=social&label=Star)](https://github.com/moojink/openvla-oft) [![Publish](https://img.shields.io/badge/Conference-RSS%202025-blue)]()
+
+  (`2025-02`) Fine-tuning recipe with parallel decoding and action chunking. <sub>Sec. 4.2</sub>
+
 
 
 <a id="inference-efficiency-techniques"></a>
@@ -243,19 +485,62 @@ Includes parameter-efficient fine-tuning (PEFT), distillation, data distillation
 > Improve runtime latency through decoding or system-level scheduling optimizations, without modifying the model structure.
 Includes speculative decoding, parallel decoding, pipelining, chunk scheduling, action reuse, runtime early-exit policies, and KV scheduling strategies.
 
-| Title | Date | Key Idea | Resources |
-|:--|:--:|:--|:--:|
-| [![Star](https://img.shields.io/github/stars/XiaomiRobotics/Xiaomi-Robotics-0.svg?style=social&label=Star)](https://github.com/XiaomiRobotics/Xiaomi-Robotics-0) <br> [**Xiaomi-Robotics-0: An Open-Sourced Vision-Language-Action Model with Real-Time Execution**](https://arxiv.org/pdf/2602.12684) | 2026-02 | Asynchronous execution training and deployment-aligned action chunk rollout for real-time VLA control. | [Code](https://github.com/XiaomiRobotics/Xiaomi-Robotics-0) / [Website](https://xiaomi-robotics-0.github.io/) |
-| [![Star](https://img.shields.io/github/stars/hzxie/DynamicVLA.svg?style=social&label=Star)](https://github.com/hzxie/DynamicVLA) <br> [**DynamicVLA: A Vision-Language-Action Model for Dynamic Object Manipulation**](https://arxiv.org/pdf/2601.22153) <br><sub>Secondary: `1.1 Static Backbone Selection`</sub> | 2026-01 | Continuous inference with latent-aware action streaming for low-latency dynamic VLA control. | [Code](https://github.com/hzxie/DynamicVLA) / [Website](https://www.infinitescript.com/project/dynamic-vla/) |
-| [**ActionFlow: A Pipelined Action Acceleration for Vision Language Models on Edge**](https://arxiv.org/pdf/2512.20276) | 2025-12 | Cross-request pipelined scheduling with unified KV buffer for real-time VLA inference on edge devices. | [Website](https://anonymous.4open.science/r/ActionFlow-1D47/README.md) |
-| [**DeeAD: Dynamic Early Exit of Vision-Language Action for Efficient Autonomous Driving**](https://arxiv.org/pdf/2511.20720) <br><sub>Domain: `AD (Autonomous Driving)`</sub> | 2025-11 | Training-free action-guided early-exit with adaptive layer skipping for faster VLA inference. | - |
-| [**Don’t Run with Scissors: Pruning Breaks VLA Models but They Can Be Recovered**](https://arxiv.org/pdf/2510.08464) | 2025-10 | Post-pruning weight-space interpolation recovery for efficient and safe VLA inference. | [Website](https://gluestick-vla.github.io/) |
-| [![Star](https://img.shields.io/github/stars/ecdine/SQAP-VLA.svg?style=social&label=Star)](https://github.com/ecdine/SQAP-VLA) <br> [**SQAP-VLA: A Synergistic Quantization-Aware Pruning Framework**](https://arxiv.org/pdf/2509.09090) <br><sub>Secondary: `2.1 Selective Feature Processing`</sub> | 2025-09 | Joint quantization-aware visual token pruning for training-free holistic VLA inference acceleration. | [Code](https://github.com/ecdine/SQAP-VLA) |
-| [![Star](https://img.shields.io/github/stars/PineTreeWss/SpecVLA.svg?style=social&label=Star)](https://github.com/PineTreeWss/SpecVLA) [![Publish](https://img.shields.io/badge/Conference-EMNLP%202025-blue)]() <br> [**Spec-VLA: Speculative Decoding for Vision-Language-Action Models with Relaxed Acceptance**](https://arxiv.org/pdf/2507.22424) | 2025-07 | Speculative decoding with relaxed acceptance for accelerated VLA action generation. | [Code](https://github.com/PineTreeWss/SpecVLA) |
-| [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]() <br> [**SP-VLA: A joint model scheduling and token-pruning approach for VLA model acceleration**](https://arxiv.org/pdf/2506.12723) <br><sub>Secondary: `2.1 Selective Feature Processing`</sub> | 2025-06 | Action-aware model scheduling with spatio-semantic dual token pruning for efficient sequential VLA inference. | - |
-| [![Publish](https://img.shields.io/badge/Conference-ICRA%202026-blue)]() <br> [**Fast ECoT: Efficient Embodied Chain-of-Thought via Thoughts Reuse**](https://arxiv.org/pdf/2506.07639) <br><sub>Secondary: `2.2 Temporal Sharing and Reuse`</sub> | 2025-06 | Inference-time acceleration of Embodied CoT via reasoning cache reuse, parallel generation, and asynchronous scheduling. | - |
-| [![Star](https://img.shields.io/github/stars/OpenHelix-Team/CEED-VLA.svg?style=social&label=Star)](https://github.com/OpenHelix-Team/CEED-VLA) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]() <br> [**CEED-VLA: Consistency Vision-Language-Action Model with Early-Exit Decoding**](https://arxiv.org/pdf/2506.13725) <br><sub>Secondary: `4.1 Training Efficiency Techniques`</sub> | 2025-06 | Consistency-distilled multi-token prediction with early-exit decoding for accelerated VLA inference. | [Code](https://github.com/OpenHelix-Team/CEED-VLA) / [Website](https://irpn-eai.github.io/CEED-VLA/) |
-| [**Accelerating VLA Models Integrated with Action Chunking via Parallel Decoding**](https://arxiv.org/pdf/2503.02310) | 2025-03 | Parallel fixed-point decoding for accelerating action-chunked VLA models without retraining. | - |
+- [**LiteVLA-Edge: Quantized On-Device Multimodal Control for Embedded Robotics**](https://arxiv.org/pdf/2603.03380)
+
+  🔥 New (`2026-03`) On-device VLA pipeline with 4-bit quantization and GPU-accelerated runtime execution. <sub>Sec. 4.1</sub>
+
+- [**KERV: Kinematic-Rectified Speculative Decoding for Embodied VLA Models**](https://arxiv.org/pdf/2603.01581)
+
+  🔥 New (`2026-03`) Kinematic-rectified speculative decoding with adaptive acceptance thresholds.
+
+- [**How Fast Can I Run My VLA? Demystifying VLA Inference Performance with VLA-Perf**](https://arxiv.org/pdf/2602.18397)
+
+  🔥 New (`2026-02`) Analytical performance modeling for real-time VLA inference across architectures and execution modes.
+
+- [**Xiaomi-Robotics-0: An Open-Sourced Vision-Language-Action Model with Real-Time Execution**](https://arxiv.org/pdf/2602.12684) [![Star](https://img.shields.io/github/stars/XiaomiRobotics/Xiaomi-Robotics-0.svg?style=social&label=Star)](https://github.com/XiaomiRobotics/Xiaomi-Robotics-0)
+
+  (`2026-02`) Execution training with deployment-aligned action chunk rollout.
+
+- [**DynamicVLA: A Vision-Language-Action Model for Dynamic Object Manipulation**](https://arxiv.org/pdf/2601.22153) [![Star](https://img.shields.io/github/stars/hzxie/DynamicVLA.svg?style=social&label=Star)](https://github.com/hzxie/DynamicVLA)
+
+  (`2026-01`) Latent-aware action streaming for dynamic inference. <sub>Sec. 1.1</sub>
+
+- [**ActionFlow: A Pipelined Action Acceleration for Vision Language Models on Edge**](https://arxiv.org/pdf/2512.20276)
+
+  (`2025-12`) Pipelined scheduling with a unified KV buffer.
+
+- [**DeeAD: Dynamic Early Exit of Vision-Language Action for Efficient Autonomous Driving**](https://arxiv.org/pdf/2511.20720)
+
+  (`2025-11`) Action-guided early exit with adaptive layer skipping. <sub>AD</sub>
+
+- [**Don’t Run with Scissors: Pruning Breaks VLA Models but They Can Be Recovered**](https://arxiv.org/pdf/2510.08464)
+
+  (`2025-10`) Weight-space interpolation recovery.
+
+- [**SQAP-VLA: A Synergistic Quantization-Aware Pruning Framework**](https://arxiv.org/pdf/2509.09090) [![Star](https://img.shields.io/github/stars/ecdine/SQAP-VLA.svg?style=social&label=Star)](https://github.com/ecdine/SQAP-VLA)
+
+  (`2025-09`) Quantization-aware visual token pruning for training-free holistic VLA inference acceleration. <sub>Sec. 2.1</sub>
+
+- [**Spec-VLA: Speculative Decoding for Vision-Language-Action Models with Relaxed Acceptance**](https://arxiv.org/pdf/2507.22424) [![Star](https://img.shields.io/github/stars/PineTreeWss/SpecVLA.svg?style=social&label=Star)](https://github.com/PineTreeWss/SpecVLA) [![Publish](https://img.shields.io/badge/Conference-EMNLP%202025-blue)]()
+
+  (`2025-07`) Speculative decoding with relaxed acceptance.
+
+- [**SP-VLA: A joint model scheduling and token-pruning approach for VLA model acceleration**](https://arxiv.org/pdf/2506.12723) [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]()
+
+  (`2025-06`) Action-aware model scheduling with spatio-semantic dual token pruning. <sub>Sec. 2.1</sub>
+
+- [**Fast ECoT: Efficient Embodied Chain-of-Thought via Thoughts Reuse**](https://arxiv.org/pdf/2506.07639) [![Publish](https://img.shields.io/badge/Conference-ICRA%202026-blue)]()
+
+  (`2025-06`) Embodied CoT acceleration via reasoning cache reuse and parallel generation. <sub>Sec. 2.2</sub>
+
+- [**CEED-VLA: Consistency Vision-Language-Action Model with Early-Exit Decoding**](https://arxiv.org/pdf/2506.13725) [![Star](https://img.shields.io/github/stars/OpenHelix-Team/CEED-VLA.svg?style=social&label=Star)](https://github.com/OpenHelix-Team/CEED-VLA) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]()
+
+  (`2025-06`) Multi-token prediction with early-exit decoding. <sub>Sec. 4.1</sub>
+
+- [**Accelerating VLA Models Integrated with Action Chunking via Parallel Decoding**](https://arxiv.org/pdf/2503.02310)
+
+  (`2025-03`) Fixed-point decoding for accelerating action-chunked VLA models without retraining.
+
 
 
 ---
