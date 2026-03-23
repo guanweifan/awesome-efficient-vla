@@ -14,12 +14,11 @@
 
 ---
 
-## 🔥 Latest Updates (2026-03-09 to 2026-03-16)
+## 🔥 Latest Updates (2026-03-16 to 2026-03-23)
 
-- **Perception:** [VQ-Memory](#temporal-sharing-and-reuse)
-- **Action:** [DynVLA](#reasoning-aware-action-generation)
-- **Training:** [DyQ-VLA](#training-efficiency-techniques)
-- **Inference:** [RAPID](#inference-efficiency-techniques)
+- **Action:** [FASTER (Flow VLA)](#raw-action-generation), [ProbeFlow](#raw-action-generation)
+- **Inference:** [HeiSD](#inference-efficiency-techniques)
+- **Analysis:** [Embodied Efficiency Metrics](#inference-efficiency-techniques)
 
 See the full list in the corresponding sections below.
 
@@ -242,7 +241,7 @@ This includes feature fusion, KV reuse/compression, or temporal token caching me
 
 - [**Beyond Short-Horizon: VQ-Memory for Robust Long-Horizon Manipulation in Non-Markovian Simulation Benchmarks (VQ-Memory)**](https://arxiv.org/pdf/2603.09513)
 
-  🔥 New (`2026-03`) Vector-quantized memory that compresses long-horizon proprioceptive histories into discrete latent tokens for efficient temporal context modeling.
+  (`2026-03`) Vector-quantized memory that compresses long-horizon proprioceptive histories into discrete latent tokens for efficient temporal context modeling.
 
 - [**History-Conditioned Spatio-Temporal Visual Token Pruning for Efficient Vision-Language Navigation (A-MMR)**](https://arxiv.org/pdf/2603.06480)
 
@@ -280,6 +279,14 @@ Instead of modifying perception or architecture, this category focuses on how ac
 ## 🕹️ 3.1 Raw Action Generation
 > Improve efficiency by redesigning action representation or decoding mechanisms without inserting explicit reasoning steps.
 This includes action tokenizers, discrete/flow-based decoders, block-wise or parallel decoding for actions, and compact action parameterizations.
+
+- [**FASTER: Rethinking Real-Time Flow VLAs**](https://arxiv.org/pdf/2603.19199)
+
+  🔥 New (`2026-03`) Horizon-aware flow action sampling that compresses immediate reaction decoding into a single step while preserving long-horizon trajectory quality. <sub>Sec. 4.2</sub>
+
+- [**ProbeFlow: Training-Free Adaptive Flow Matching for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.17850)
+
+  🔥 New (`2026-03`) Training-free adaptive flow solver that dynamically schedules ODE integration steps to prune redundant decoding evaluations in flow-based VLA action heads.
 
 - [**Unifying Language-Action Understanding and Generation for Autonomous Driving (LinkVLA)**](https://arxiv.org/pdf/2603.01441)
 
@@ -349,7 +356,7 @@ Reasoning can take the form of textual CoT, latent reasoning, visual subgoals, o
 
 - [**DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving**](https://arxiv.org/pdf/2603.11041)
 
-  🔥 New (`2026-03`) Dynamics-aware Chain-of-Thought that generates compact future dynamics tokens before action prediction for efficient autonomous driving reasoning. <sub>AD</sub>
+  (`2026-03`) Dynamics-aware Chain-of-Thought that generates compact future dynamics tokens before action prediction for efficient autonomous driving reasoning. <sub>AD</sub>
 
 - [**Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models (LaRA-VLA)**](https://www.arxiv.org/pdf/2602.01166) [![Star](https://img.shields.io/github/stars/LoveJu1y/LaRA-VLA.svg?style=social&label=Star)](https://github.com/LoveJu1y/LaRA-VLA)
 
@@ -410,7 +417,7 @@ Includes parameter-efficient adaptation, distillation, data distillation/selecti
 
 - [**DyQ-VLA: Temporal-Dynamic-Aware Quantization for Embodied Vision-Language-Action Models**](https://arxiv.org/pdf/2603.07904)
 
-  🔥 New (`2026-03`) Dynamic quantization that switches and allocates bit-widths in real time using kinematic sensitivity signals for efficient VLA edge deployment.
+  (`2026-03`) Dynamic quantization that switches and allocates bit-widths in real time using kinematic sensitivity signals for efficient VLA edge deployment.
 
 - [**QuantVLA: Scale-Calibrated Post-Training Quantization for Vision-Language-Action Models**](https://arxiv.org/pdf/2602.20309) [![Star](https://img.shields.io/github/stars/AIoT-MLSys-Lab/QuantVLA.svg?style=social&label=Star)](https://github.com/AIoT-MLSys-Lab/QuantVLA)
 
@@ -431,13 +438,13 @@ Includes parameter-efficient adaptation, distillation, data distillation/selecti
 <a id="inference-efficiency-techniques"></a>
 ## ⚡ 4.2 Inference Efficiency Techniques
 > Improve runtime efficiency through decoding, execution, deployment, or systems-level optimization, without centering on architectural redesign.
-Includes speculative decoding, parallel decoding, pipelining, action reuse, runtime early-exit, deployment-oriented compression, and runtime analysis tools.
+Includes speculative decoding, parallel decoding, pipelining, action reuse, runtime early-exit, deployment-oriented compression, scheduling, and efficiency evaluation tools.
 
 ### Runtime Decoding and Execution
 
-- [**RAPID: Redundancy-Aware and Compatibility-Optimal Edge-Cloud Partitioned Inference for Diverse VLA Models**](https://arxiv.org/pdf/2603.07949)
+- [**HeiSD: Hybrid Speculative Decoding for Embodied Vision-Language-Action Models with Kinematic Awareness**](https://arxiv.org/pdf/2603.17573)
 
-  🔥 New (`2026-03`) Edge-cloud collaborative inference that dynamically partitions VLA execution using step-wise kinematic redundancy and phase-aware thresholding for faster real-time deployment.
+  🔥 New (`2026-03`) Hybrid speculative decoding that combines drafter-based and retrieval-based proposals with verify-skip optimization, relaxed acceptance, and kinematic boundary selection.
 
 - [**KERV: Kinematic-Rectified Speculative Decoding for Embodied VLA Models**](https://arxiv.org/pdf/2603.01581)
 
@@ -487,15 +494,15 @@ Includes speculative decoding, parallel decoding, pipelining, action reuse, runt
 
   (`2025-02`) Fine-tuning recipe with parallel decoding and action chunking.
 
-### Deployment, Compression, and Runtime Analysis
+### Deployment, Compression, and Scheduling
+
+- [**RAPID: Redundancy-Aware and Compatibility-Optimal Edge-Cloud Partitioned Inference for Diverse VLA Models**](https://arxiv.org/pdf/2603.07949)
+
+  (`2026-03`) Edge-cloud collaborative inference that dynamically partitions VLA execution using step-wise kinematic redundancy and phase-aware thresholding for faster real-time deployment.
 
 - [**LiteVLA-Edge: Quantized On-Device Multimodal Control for Embedded Robotics**](https://arxiv.org/pdf/2603.03380)
 
   (`2026-03`) On-device VLA pipeline with 4-bit quantization and GPU-accelerated runtime execution. <sub>Sec. 4.1</sub>
-
-- [**How Fast Can I Run My VLA? Demystifying VLA Inference Performance with VLA-Perf**](https://arxiv.org/pdf/2602.18397)
-
-  (`2026-02`) Analytical performance modeling for real-time VLA inference across architectures and execution modes.
 
 - [**HBVLA: Pushing 1-Bit Post-Training Quantization for Vision-Language-Action Models**](https://arxiv.org/pdf/2602.13710)
 
@@ -516,6 +523,16 @@ Includes speculative decoding, parallel decoding, pipelining, action reuse, runt
 - [**EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models**](https://www.arxiv.org/pdf/2506.10100) [![Publish](https://img.shields.io/badge/Conference-NeurIPS%202025-blue)]()
 
   (`2025-06`) Holistic VLA acceleration via layer pruning, task-aware visual token selection, and temporal reuse. <sub>Sec. 2.1; 2.2</sub>
+
+### Efficiency Analysis and Embodied Metrics
+
+- [**From Inference Efficiency to Embodied Efficiency: Revisiting Efficiency Metrics for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.19131)
+
+  🔥 New (`2026-03`) A system-level analysis that revisits how efficient VLA should be evaluated on real robots, emphasizing embodied efficiency beyond conventional inference metrics.
+
+- [**How Fast Can I Run My VLA? Demystifying VLA Inference Performance with VLA-Perf**](https://arxiv.org/pdf/2602.18397)
+
+  (`2026-02`) Analytical performance modeling for real-time VLA inference across architectures and execution modes.
 
 ---
 
