@@ -8,17 +8,17 @@
   <img src="./imgs/overview.png" width="100%" height="80%">
 </p>
 
-📖 Survey: A live-updated hub for **[Efficient VLA for Embodied Manipulation](https://arxiv.org/pdf/2510.17111)** across architecture, perception, action & pipeline.
+📖 Survey: A live-updated hub for **[Efficient VLA for Embodied Manipulation](https://arxiv.org/pdf/2510.17111)** across architecture, perception, action & pipeline, providing real-time updates on the fast-moving VLA field.
 
 🚀 Updates: Weekly / Bi-weekly. Contributions & ⭐ are welcome to help researchers navigate the field!
 
 ---
 
-## 🔥 Latest Updates (2026-03-16 to 2026-03-23)
+## 🔥 Latest Updates (2026-03-23 to 2026-03-30)
 
-- **Action:** [FASTER (Flow VLA)](#raw-action-generation), [ProbeFlow](#raw-action-generation)
-- **Inference:** [HeiSD](#inference-efficiency-techniques)
-- **Analysis:** [Embodied Efficiency Metrics](#inference-efficiency-techniques)
+- **Perception:** [VLA-IAP](#selective-feature-processing)
+- **Action:** [Fast-dVLA](#raw-action-generation)
+- **Reasoning:** [DualCoT-VLA](#reasoning-aware-action-generation)
 
 See the full list in the corresponding sections below.
 
@@ -186,6 +186,10 @@ Since visual tokens dominate attention cost and KV memory, this category focuses
 > Compress or prune visual tokens before they are consumed by the policy.
 Methods selectively retain task-relevant spatial information (foreground, geometry, semantics) to reduce attention cost while preserving critical signals.
 
+- [**VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.22991)
+
+  🔥 New (`2026-03`) Training-free visual token pruning that preserves geometric interaction anchors and dynamically schedules pruning intensity using semantic-motion alignment.
+
 - [**BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model**](https://arxiv.org/pdf/2602.20566)
 
   (`2026-02`) Hierarchical multi-view token pruning that removes redundant regions and camera views.
@@ -280,13 +284,17 @@ Instead of modifying perception or architecture, this category focuses on how ac
 > Improve efficiency by redesigning action representation or decoding mechanisms without inserting explicit reasoning steps.
 This includes action tokenizers, discrete/flow-based decoders, block-wise or parallel decoding for actions, and compact action parameterizations.
 
+- [**Fast-dVLA: Accelerating Discrete Diffusion VLA to Real-Time Performance**](https://arxiv.org/pdf/2603.25661)
+
+  🔥 New (`2026-03`) Block-wise discrete diffusion action generation with KV-cache reuse and inter-block parallel decoding for real-time VLA inference. <sub>Sec. 4.2</sub>
+
 - [**FASTER: Rethinking Real-Time Flow VLAs**](https://arxiv.org/pdf/2603.19199)
 
-  🔥 New (`2026-03`) Horizon-aware flow action sampling that compresses immediate reaction decoding into a single step while preserving long-horizon trajectory quality. <sub>Sec. 4.2</sub>
+  (`2026-03`) Horizon-aware flow action sampling that compresses immediate reaction decoding into a single step while preserving long-horizon trajectory quality. <sub>Sec. 4.2</sub>
 
 - [**ProbeFlow: Training-Free Adaptive Flow Matching for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.17850)
 
-  🔥 New (`2026-03`) Training-free adaptive flow solver that dynamically schedules ODE integration steps to prune redundant decoding evaluations in flow-based VLA action heads.
+  (`2026-03`) Training-free adaptive flow solver that dynamically schedules ODE integration steps to prune redundant decoding evaluations in flow-based VLA action heads.
 
 - [**Unifying Language-Action Understanding and Generation for Autonomous Driving (LinkVLA)**](https://arxiv.org/pdf/2603.01441)
 
@@ -353,6 +361,10 @@ This includes action tokenizers, discrete/flow-based decoders, block-wise or par
 <a id="visual-reasoning"></a>
 ## 💡 3.2 Reasoning-Aware Action Generation
 Reasoning can take the form of textual CoT, latent reasoning, visual subgoals, or world-model rollouts, and may be optimized via caching or latent compression.
+
+- [**DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.22280)
+
+  🔥 New (`2026-03`) Dual visual-linguistic Chain-of-Thought with parallel single-step reasoning for efficient multimodal reasoning before action generation.
 
 - [**DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving**](https://arxiv.org/pdf/2603.11041)
 
@@ -444,7 +456,7 @@ Includes speculative decoding, parallel decoding, pipelining, action reuse, runt
 
 - [**HeiSD: Hybrid Speculative Decoding for Embodied Vision-Language-Action Models with Kinematic Awareness**](https://arxiv.org/pdf/2603.17573)
 
-  🔥 New (`2026-03`) Hybrid speculative decoding that combines drafter-based and retrieval-based proposals with verify-skip optimization, relaxed acceptance, and kinematic boundary selection.
+  (`2026-03`) Hybrid speculative decoding that combines drafter-based and retrieval-based proposals with verify-skip optimization, relaxed acceptance, and kinematic boundary selection.
 
 - [**KERV: Kinematic-Rectified Speculative Decoding for Embodied VLA Models**](https://arxiv.org/pdf/2603.01581)
 
@@ -528,7 +540,7 @@ Includes speculative decoding, parallel decoding, pipelining, action reuse, runt
 
 - [**From Inference Efficiency to Embodied Efficiency: Revisiting Efficiency Metrics for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.19131)
 
-  🔥 New (`2026-03`) A system-level analysis that revisits how efficient VLA should be evaluated on real robots, emphasizing embodied efficiency beyond conventional inference metrics.
+  (`2026-03`) A system-level analysis that revisits how efficient VLA should be evaluated on real robots, emphasizing embodied efficiency beyond conventional inference metrics.
 
 - [**How Fast Can I Run My VLA? Demystifying VLA Inference Performance with VLA-Perf**](https://arxiv.org/pdf/2602.18397)
 
