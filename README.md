@@ -14,11 +14,12 @@
 
 ---
 
-## 🔥 Latest Updates (2026-03-23 to 2026-03-30)
+## 🔥 Latest Updates (2026-03-30 to 2026-04-13)
 
-- **Perception:** [VLA-IAP](#selective-feature-processing)
-- **Action:** [Fast-dVLA](#raw-action-generation)
-- **Reasoning:** [DualCoT-VLA](#reasoning-aware-action-generation)
+- **Perception:** [Tri-Stage Token Pruning Framework](#selective-feature-processing), [VLA-InfoEntropy](#selective-feature-processing)
+- **Temporal:** [ETA-VLA](#temporal-sharing-and-reuse)
+- **Action:** [SnapFlow](#raw-action-generation), [AAC](#raw-action-generation), [AnchorVLA](#raw-action-generation)
+- **Inference:** [A1](#inference-efficiency-techniques), [StreamingVLA](#inference-efficiency-techniques), [Realtime-VLA V2](#inference-efficiency-techniques)
 
 See the full list in the corresponding sections below.
 
@@ -165,7 +166,7 @@ A slow, high-capacity reasoning component provides guidance to a fast, lightweig
 
   (`2025-05`) Systematic structural evaluation with a low-cost design.
 
-- [**TOWARDS SYNERGISTIC, GENERALIZED AND EFFICIENT DUAL-SYSTEM FOR ROBOTIC MANIPULATION**](https://arxiv.org/pdf/2410.08001)
+- [**TOWARDS SYNERGISTIC, GENERALIZED AND EFFICIENT DUAL-SYSTEM FOR ROBOTIC MANIPULATION (RoboDual)**](https://arxiv.org/pdf/2410.08001)
 
   (`2024-10`) Generalist reasoning with a lightweight specialist diffusion policy.
 
@@ -186,9 +187,17 @@ Since visual tokens dominate attention cost and KV memory, this category focuses
 > Compress or prune visual tokens before they are consumed by the policy.
 Methods selectively retain task-relevant spatial information (foreground, geometry, semantics) to reduce attention cost while preserving critical signals.
 
+- [**2D or 3D: Who Governs Salience in VLA Models? Tri-Stage Token Pruning Framework with Modality Salience Awareness**](https://arxiv.org/pdf/2604.09244)
+
+  🔥 New (`2026-04`) Tri-stage token pruning that adaptively selects 2D and 3D visual tokens using modality salience discrepancies and action-stage dynamics.
+
+- [**VLA-InfoEntropy: A Training-Free Vision-Attention Information Entropy Approach for Vision-Language-Action Models Inference Acceleration and Success**](https://arxiv.org/pdf/2604.05323)
+
+  🔥 New (`2026-04`) Training-free dynamic token selection using visual entropy, attention entropy, and timestep cues to shift computation toward locally informative regions.
+
 - [**VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.22991)
 
-  🔥 New (`2026-03`) Training-free visual token pruning that preserves geometric interaction anchors and dynamically schedules pruning intensity using semantic-motion alignment.
+  (`2026-03`) Training-free visual token pruning that preserves geometric interaction anchors and dynamically schedules pruning intensity using semantic-motion alignment.
 
 - [**BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model**](https://arxiv.org/pdf/2602.20566)
 
@@ -218,11 +227,11 @@ Methods selectively retain task-relevant spatial information (foreground, geomet
 
   (`2025-11`) Dual visual pruning with hierarchical fusion for sparsified VLA perception.
 
-- [**ACTION-AWARE DYNAMIC PRUNING FOR EFFICIENT VISION-LANGUAGE-ACTION MANIPULATION**](https://arxiv.org/pdf/2509.22093) [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]()
+- [**ACTION-AWARE DYNAMIC PRUNING FOR EFFICIENT VISION-LANGUAGE-ACTION MANIPULATION (ADP)**](https://arxiv.org/pdf/2509.22093) [![Publish](https://img.shields.io/badge/Conference-ICLR%202026-blue)]()
 
   (`2025-09`) Action-aware dynamic visual token pruning with trajectory-conditioned gating.
 
-- [**The Better You Learn, The Smarter You Prune: Differentiable Token Pruning for VLA**](https://arxiv.org/pdf/2509.12594) [![Star](https://img.shields.io/github/stars/LiAutoAD/LightVLA.svg?style=social&label=Star)](https://github.com/LiAutoAD/LightVLA)
+- [**The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning (LightVLA)**](https://arxiv.org/pdf/2509.12594) [![Star](https://img.shields.io/github/stars/LiAutoAD/LightVLA.svg?style=social&label=Star)](https://github.com/LiAutoAD/LightVLA)
 
   (`2025-09`) Adaptive visual token pruning via dynamic query-based importance estimation.
 
@@ -243,6 +252,10 @@ Methods selectively retain task-relevant spatial information (foreground, geomet
 > Exploit temporal consistency to avoid recomputing stable information across timesteps.
 This includes feature fusion, KV reuse/compression, or temporal token caching mechanisms that reduce redundant computation in sequential decision-making.
 
+- [**ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.25766)
+
+  🔥 New (`2026-03`) Temporal fusion compresses redundant historical multi-view information while intra-LLM sparse aggregation dynamically prunes critical visual tokens for efficient driving inference. <sub>Sec. 2.1 · AD</sub>
+
 - [**Beyond Short-Horizon: VQ-Memory for Robust Long-Horizon Manipulation in Non-Markovian Simulation Benchmarks (VQ-Memory)**](https://arxiv.org/pdf/2603.09513)
 
   (`2026-03`) Vector-quantized memory that compresses long-horizon proprioceptive histories into discrete latent tokens for efficient temporal context modeling.
@@ -255,11 +268,11 @@ This includes feature fusion, KV reuse/compression, or temporal token caching me
 
   (`2026-02`) Temporally adaptive compression for long multi-view histories with constant-latency execution.
 
-- [**Efficient Long-Horizon Vision-Language-Action Models via Static-Dynamic Disentanglement**](https://arxiv.org/pdf/2602.03983)
+- [**Efficient Long-Horizon Vision-Language-Action Models via Static-Dynamic Disentanglement (SD-VLA)**](https://arxiv.org/pdf/2602.03983)
 
   (`2026-02`) Static-dynamic token disentanglement with KV reuse.
 
-- [**Learning to Accelerate Vision-Language-Action Models through Adaptive Visual Token Caching**](https://arxiv.org/pdf/2602.00500) [![Star](https://img.shields.io/github/stars/JiahanFan/LAC.svg?style=social&label=Star)](https://github.com/JiahanFan/LAC)
+- [**Learning to Accelerate Vision-Language-Action Models through Adaptive Visual Token Caching**](https://arxiv.org/pdf/2602.00686) [![Star](https://img.shields.io/github/stars/JiahanFan/LAC.svg?style=social&label=Star)](https://github.com/JiahanFan/LAC)
 
   (`2026-02`) Task-aware token caching with differentiable selection. <sub>Sec. 4.2</sub>
 
@@ -284,9 +297,21 @@ Instead of modifying perception or architecture, this category focuses on how ac
 > Improve efficiency by redesigning action representation or decoding mechanisms without inserting explicit reasoning steps.
 This includes action tokenizers, discrete/flow-based decoders, block-wise or parallel decoding for actions, and compact action parameterizations.
 
+- [**SnapFlow: One-Step Action Generation for Flow-Matching VLAs via Progressive Self-Distillation**](https://arxiv.org/pdf/2604.05656)
+
+  🔥 New (`2026-04`) Plug-and-play self-distillation that compresses multi-step flow-matching denoising into single-step action generation for low-latency VLA inference.
+
+- [**Adaptive Action Chunking at Inference-time for Vision-Language-Action Models (AAC)**](https://arxiv.org/pdf/2604.04161) [![Star](https://img.shields.io/github/stars/junhyukso/SGAC.svg?style=social&label=Star)](https://github.com/junhyukso/SGAC)
+
+  🔥 New (`2026-04`) Inference-time adaptive action chunking that uses action entropy to balance reactivity and consistency in VLA manipulation.
+
+- [**AnchorVLA: Anchored Diffusion for Efficient End-to-End Mobile Manipulation**](https://arxiv.org/pdf/2604.01567) [![Star](https://img.shields.io/github/stars/jason-lim26/AnchorVLA.svg?style=social&label=Star)](https://github.com/jason-lim26/AnchorVLA)
+
+  🔥 New (`2026-04`) Anchored diffusion action head with a truncated schedule for low-latency multimodal action generation in mobile manipulation.
+
 - [**Fast-dVLA: Accelerating Discrete Diffusion VLA to Real-Time Performance**](https://arxiv.org/pdf/2603.25661)
 
-  🔥 New (`2026-03`) Block-wise discrete diffusion action generation with KV-cache reuse and inter-block parallel decoding for real-time VLA inference. <sub>Sec. 4.2</sub>
+  (`2026-03`) Block-wise discrete diffusion action generation with KV-cache reuse and inter-block parallel decoding for real-time VLA inference. <sub>Sec. 4.2</sub>
 
 - [**FASTER: Rethinking Real-Time Flow VLAs**](https://arxiv.org/pdf/2603.19199)
 
@@ -364,7 +389,7 @@ Reasoning can take the form of textual CoT, latent reasoning, visual subgoals, o
 
 - [**DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.22280)
 
-  🔥 New (`2026-03`) Dual visual-linguistic Chain-of-Thought with parallel single-step reasoning for efficient multimodal reasoning before action generation.
+  (`2026-03`) Dual visual-linguistic Chain-of-Thought with parallel single-step reasoning for efficient multimodal reasoning before action generation.
 
 - [**DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving**](https://arxiv.org/pdf/2603.11041)
 
@@ -454,6 +479,14 @@ Includes speculative decoding, parallel decoding, pipelining, action reuse, runt
 
 ### Runtime Decoding and Execution
 
+- [**A1: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model**](https://arxiv.org/pdf/2604.05672) [![Star](https://img.shields.io/github/stars/ATeam-Research/A1.svg?style=social&label=Star)](https://github.com/ATeam-Research/A1)
+
+  🔥 New (`2026-04`) Budget-aware adaptive inference that jointly accelerates the VLM backbone and flow-matching action head via early termination and inter-layer truncated denoising warm-starts.
+
+- [**StreamingVLA: Streaming Vision-Language-Action Model with Action Flow Matching and Adaptive Early Observation**](https://arxiv.org/pdf/2603.28565)
+
+  🔥 New (`2026-03`) Streaming VLA that asynchronously overlaps observation, action generation, and execution to reduce latency and execution halting. <sub>Sec. 3.1</sub>
+
 - [**HeiSD: Hybrid Speculative Decoding for Embodied Vision-Language-Action Models with Kinematic Awareness**](https://arxiv.org/pdf/2603.17573)
 
   (`2026-03`) Hybrid speculative decoding that combines drafter-based and retrieval-based proposals with verify-skip optimization, relaxed acceptance, and kinematic boundary selection.
@@ -507,6 +540,10 @@ Includes speculative decoding, parallel decoding, pipelining, action reuse, runt
   (`2025-02`) Fine-tuning recipe with parallel decoding and action chunking.
 
 ### Deployment, Compression, and Scheduling
+
+- [**Realtime-VLA V2: Learning to Run VLAs Fast, Smooth, and Accurate**](https://arxiv.org/pdf/2603.26360) [![Star](https://img.shields.io/github/stars/dexmal/realtime-vla-v2.svg?style=social&label=Star)](https://github.com/dexmal/realtime-vla-v2)
+
+  🔥 New (`2026-03`) Deployment-oriented VLA system that combines calibration, planning and control, and learning-based execution-speed selection for fast, smooth, and accurate real-robot operation.
 
 - [**RAPID: Redundancy-Aware and Compatibility-Optimal Edge-Cloud Partitioned Inference for Diverse VLA Models**](https://arxiv.org/pdf/2603.07949)
 
