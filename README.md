@@ -3,6 +3,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2510.17111-b31b1b.svg)](https://arxiv.org/pdf/2510.17111)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/guanweifan/awesome-efficient-vla/commits/main/)
 [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/guanweifan/awesome-efficient-vla/pulls)
+[![Wiki](https://img.shields.io/badge/Wiki-efficient--vla--wiki-1677FF.svg)](https://github.com/guanweifan/efficient-vla-wiki)
 
 <p align="center">
   <img src="./imgs/overview.png" width="100%" height="80%">
@@ -11,6 +12,10 @@
 📖 Survey: A live-updated hub for **[Efficient VLA for Embodied Manipulation](https://arxiv.org/pdf/2510.17111)** across architecture, perception, action & pipeline, providing real-time updates on the fast-moving VLA field.
 
 🚀 Updates: Weekly / Bi-weekly. Contributions & ⭐ are welcome to help researchers navigate the field!
+
+> [!IMPORTANT]
+> **✨ Want a more structured way to study this field?**  
+> Try [efficient-vla-wiki](https://github.com/guanweifan/efficient-vla-wiki). It turns this paper list into an interactive research workspace where you can ask focused questions, compare methods across papers, and keep building your own understanding of the field.
 
 ---
 
