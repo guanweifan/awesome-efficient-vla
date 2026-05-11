@@ -29,12 +29,13 @@
 - [Star History](#star-history)
 - [Classification Logic](#classification-logic)
 
-## 🔥 Latest Updates (2026-04-14 to 2026-04-27)
+## 🔥 Latest Updates (2026-04-28 to 2026-05-11)
 
-- **1.1 Static Backbone Selection:** [PokeVLA](#static-backbone-selection)
-- **3.1 Raw Action Generation:** [SpanVLA](#raw-action-generation), [FASTER: Value-Guided Sampling](#raw-action-generation)
-- **3.2 Reasoning-Aware Action Generation:** [OneVL](#reasoning-aware-action-generation)
-- **4.1 Training Efficiency Techniques:** [DA-PTQ](#training-efficiency-techniques)
+- **2.1 Selective Feature Processing:** [OneWM-VLA](#selective-feature-processing)
+- **3.1 Raw Action Generation:** [CF-VLA](#raw-action-generation)
+- **3.2 Reasoning-Aware Action Generation:** [VLA-ATTC](#reasoning-aware-action-generation)
+- **4.1 Training Efficiency Techniques:** [RLT](#training-efficiency-techniques), [Efficient Video Transfer](#training-efficiency-techniques), [VLA-GSE](#training-efficiency-techniques)
+- **4.2 Inference Efficiency Techniques:** [AsyncShield](#inference-efficiency-techniques), [DP-Cache / V-AEFusion](#inference-efficiency-techniques), [EdgeFM](#inference-efficiency-techniques)
 
 See the full list in the corresponding sections below.
 
@@ -47,12 +48,12 @@ Start from the efficiency problem you care about, then jump to the corresponding
 | Smaller model backbone | [1.1 Static Backbone Selection](#static-backbone-selection) | compact VLM, small backbone, lightweight policy | 7 |
 | Skipping unnecessary computation | [1.2 Dynamic Computation Pathways](#dynamic-computation-pathways) | routing, layer skipping, early exit, adaptive depth | 6 |
 | Slow reasoning with fast control | [1.3 Dual-system Design](#dual-system-design) | dual-system policy, memory, fast controller | 10 |
-| Fewer visual tokens | [2.1 Selective Feature Processing](#selective-feature-processing) | pruning, merging, salience selection, compression | 15 |
+| Fewer visual tokens | [2.1 Selective Feature Processing](#selective-feature-processing) | pruning, merging, salience selection, compression | 16 |
 | Reusing temporal context | [2.2 Temporal Sharing and Reuse](#temporal-sharing-and-reuse) | history fusion, KV cache, feature reuse | 8 |
-| Faster action decoding | [3.1 Raw Action Generation](#raw-action-generation) | action tokenizer, chunking, diffusion / flow, parallel decoding | 23 |
-| Cheaper reasoning before action | [3.2 Reasoning-Aware Action Generation](#reasoning-aware-action-generation) | text CoT, latent CoT, visual subgoal, world dynamics | 9 |
-| Cheaper adaptation or compression | [4.1 Training Efficiency Techniques](#training-efficiency-techniques) | distillation, RL, data selection, PTQ / QAT | 10 |
-| Real-time deployment or evaluation | [4.2 Inference Efficiency Techniques](#inference-efficiency-techniques) | streaming, scheduling, edge deployment, metrics | 25 |
+| Faster action decoding | [3.1 Raw Action Generation](#raw-action-generation) | action tokenizer, chunking, diffusion / flow, parallel decoding | 24 |
+| Cheaper reasoning before action | [3.2 Reasoning-Aware Action Generation](#reasoning-aware-action-generation) | text CoT, latent CoT, visual subgoal, world dynamics | 10 |
+| Cheaper adaptation or compression | [4.1 Training Efficiency Techniques](#training-efficiency-techniques) | distillation, RL, data selection, PTQ / QAT | 13 |
+| Real-time deployment or evaluation | [4.2 Inference Efficiency Techniques](#inference-efficiency-techniques) | streaming, scheduling, edge deployment, metrics | 28 |
 
 ---
 
@@ -69,7 +70,7 @@ Reduce structural redundancy inside the model itself through smaller backbones, 
 <a id="static-backbone-selection"></a>
 ### 1.1 Static Backbone Selection
 
-- [**PokeVLA: Empowering Pocket-Sized Vision-Language-Action Model with Comprehensive World Knowledge Guidance**](https://arxiv.org/pdf/2604.20834) · 🔥 New `2026-04` · Pocket-sized VLA with a lightweight embodied-aware VLM and spatial-semantic guidance.
+- [**PokeVLA: Empowering Pocket-Sized Vision-Language-Action Model with Comprehensive World Knowledge Guidance**](https://arxiv.org/pdf/2604.20834) · `2026-04` · Pocket-sized VLA with a lightweight embodied-aware VLM and spatial-semantic guidance.
 - [**Evo-1: Lightweight Vision-Language-Action Model with Preserved Semantic Alignment**](https://arxiv.org/pdf/2511.04555) · `2025-11` · Compact multimodal backbone with a cross-modulated diffusion transformer. <sub>[Code](https://github.com/MINT-SJTU/Evo-1) · Sec. 4.1</sub>
 - [**FLOWER: Democratizing Generalist Robot Policies with Efficient Vision-Language-Action Flow Policies**](https://arxiv.org/pdf/2509.04996) · `2025-09` · Intermediate-modality fusion with LLM layer pruning. <sub>[Code](https://github.com/intuitive-robots/flower_vla_calvin) · Venue: CoRL 2025</sub>
 - [**SmolVLA: A vision-language-action model for affordable and efficient robotics**](https://arxiv.org/pdf/2506.01844) · `2025-06` · Single-GPU training with asynchronous inference. <sub>[Code](https://github.com/huggingface/lerobot) · Sec. 4.2</sub>
@@ -109,6 +110,7 @@ Reduce spatial and temporal redundancy in visual representations through token f
 <a id="selective-feature-processing"></a>
 ### 2.1 Selective Feature Processing
 
+- [**One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy (OneWM-VLA)**](https://arxiv.org/pdf/2605.07931) · 🔥 New `2026-05` · One latent world token per view/frame for scalable long-horizon rollout.
 - [**2D or 3D: Who Governs Salience in VLA Models? Tri-Stage Token Pruning Framework with Modality Salience Awareness**](https://arxiv.org/pdf/2604.09244) · `2026-04` · Tri-stage 2D / 3D token pruning with modality salience awareness.
 - [**VLA-InfoEntropy: A Training-Free Vision-Attention Information Entropy Approach for Vision-Language-Action Models Inference Acceleration and Success**](https://arxiv.org/pdf/2604.05323) · `2026-04` · Training-free dynamic token selection using visual entropy, attention entropy, and timestep cues.
 - [**VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.22991) · `2026-03` · Geometric interaction anchors with semantic-motion pruning schedules.
@@ -150,8 +152,9 @@ Reduce redundancy in action representation, decoding, sampling, or reasoning bef
 <a id="raw-action-generation"></a>
 ### 3.1 Raw Action Generation
 
-- [**FASTER: Value-Guided Sampling for Fast RL**](https://arxiv.org/pdf/2604.19730) · 🔥 New `2026-04` · VLA-adjacent value-guided candidate filtering for diffusion-policy sampling. <sub>[Code](https://github.com/alexanderswerdlow/faster)</sub>
-- [**SpanVLA: Efficient Action Bridging and Learning from Negative-Recovery Samples for Vision-Language-Action Model**](https://arxiv.org/pdf/2604.19710) · 🔥 New `2026-04` · Flow-matching action expert bridged from autoregressive VLM reasoning. <sub>AD</sub>
+- [**CF-VLA: Efficient Coarse-to-Fine Action Generation for Vision-Language-Action Policies**](https://arxiv.org/pdf/2604.24622) · 🔥 New `2026-04` · Coarse-to-fine flow-based action generation with single-step local refinement. <sub>[Code](https://github.com/EmbodiedAI-RoboTron/CF-VLA)</sub>
+- [**FASTER: Value-Guided Sampling for Fast RL**](https://arxiv.org/pdf/2604.19730) · `2026-04` · VLA-adjacent value-guided candidate filtering for diffusion-policy sampling. <sub>[Code](https://github.com/alexanderswerdlow/faster)</sub>
+- [**SpanVLA: Efficient Action Bridging and Learning from Negative-Recovery Samples for Vision-Language-Action Model**](https://arxiv.org/pdf/2604.19710) · `2026-04` · Flow-matching action expert bridged from autoregressive VLM reasoning. <sub>AD</sub>
 - [**SnapFlow: One-Step Action Generation for Flow-Matching VLAs via Progressive Self-Distillation**](https://arxiv.org/pdf/2604.05656) · `2026-04` · Self-distillation from multi-step flow matching to one-step action generation.
 - [**Adaptive Action Chunking at Inference-time for Vision-Language-Action Models (AAC)**](https://arxiv.org/pdf/2604.04161) · `2026-04` · Inference-time action chunking using action entropy. <sub>[Code](https://github.com/junhyukso/SGAC)</sub>
 - [**AnchorVLA: Anchored Diffusion for Efficient End-to-End Mobile Manipulation**](https://arxiv.org/pdf/2604.01567) · `2026-04` · Anchored diffusion action head with a truncated schedule. <sub>[Code](https://github.com/jason-lim26/AnchorVLA)</sub>
@@ -182,7 +185,8 @@ Reduce redundancy in action representation, decoding, sampling, or reasoning bef
 <a id="reasoning-aware-action-generation"></a>
 ### 3.2 Reasoning-Aware Action Generation
 
-- [**OneVL: One-Step Latent Reasoning and Planning with Vision-Language Explanation**](https://arxiv.org/pdf/2604.18486) · 🔥 New `2026-04` · One-step latent CoT for single-pass trajectory prediction. <sub>AD</sub>
+- [**VLA-ATTC: Adaptive Test-Time Compute for VLA Models with Relative Action Critic Model**](https://arxiv.org/pdf/2605.01194) · 🔥 New `2026-05` · Uncertainty-triggered deliberation with a Relative Action Critic. <sub>Sec. 4.2</sub>
+- [**OneVL: One-Step Latent Reasoning and Planning with Vision-Language Explanation**](https://arxiv.org/pdf/2604.18486) · `2026-04` · One-step latent CoT for single-pass trajectory prediction. <sub>AD</sub>
 - [**DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.22280) · `2026-03` · Parallel visual-linguistic Chain-of-Thought.
 - [**DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving**](https://arxiv.org/pdf/2603.11041) · `2026-03` · Compact future dynamics tokens before action prediction. <sub>AD</sub>
 - [**Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models (LaRA-VLA)**](https://www.arxiv.org/pdf/2602.01166) · `2026-02` · Latent reasoning instead of explicit CoT. <sub>[Code](https://github.com/LoveJu1y/LaRA-VLA)</sub>
@@ -200,8 +204,11 @@ Optimize how VLA models are learned, executed, compressed, deployed, or evaluate
 <a id="training-efficiency-techniques"></a>
 ### 4.1 Training Efficiency Techniques
 
-#### Adaptation-Efficient Learning
+#### Adaptation- and Data-Efficient Learning
 
+- [**VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts**](https://arxiv.org/pdf/2605.06175) · 🔥 New `2026-05` · Generalized and specialized experts for parameter-efficient VLA fine-tuning. <sub>[Code](https://github.com/YuhuaJiang2002/VLA-GSE)</sub>
+- [**Seeing Realism from Simulation: Efficient Video Transfer for Vision-Language-Action Data Augmentation**](https://arxiv.org/pdf/2605.02757) · 🔥 New `2026-05` · Velocity-cached video transfer plus coreset sampling for efficient data augmentation. <sub>[Code](https://github.com/nanfangxiansheng/Seeing-Realism-from-Simulation)</sub>
+- [**RL Token: Bootstrapping Online RL with Vision-Language-Action Models (RLT)**](https://arxiv.org/pdf/2604.23073) · 🔥 New `2026-04` · Compact RL token for sample-efficient online actor-critic fine-tuning.
 - [**TwinRL-VLA: Digital Twin-Driven Reinforcement Learning for Real-World Robotic Manipulation (TwinRL)**](https://arxiv.org/pdf/2602.09023) · `2026-02` · Digital twin-guided RL for efficient real-world exploration.
 - [**RL-VLA3: REINFORCEMENT LEARNING VLA AC-CELERATING VIA FULL ASYNCHRONISM**](https://arxiv.org/pdf/2602.05765) · `2026-02` · Fully asynchronous RL training pipeline.
 - [**FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models**](https://arxiv.org/pdf/2511.16233) · `2025-11` · Influence-aware generative data distillation. <sub>Venue: AAAI 2026</sub>
@@ -209,7 +216,7 @@ Optimize how VLA models are learned, executed, compressed, deployed, or evaluate
 
 #### Distillation and Compression-Oriented Optimization
 
-- [**DA-PTQ: Drift-Aware Post-Training Quantization for Efficient Vision-Language-Action Models**](https://arxiv.org/pdf/2604.11572) · 🔥 New `2026-04` · Drift-aware PTQ with cross-space compensation and mixed precision.
+- [**DA-PTQ: Drift-Aware Post-Training Quantization for Efficient Vision-Language-Action Models**](https://arxiv.org/pdf/2604.11572) · `2026-04` · Drift-aware PTQ with cross-space compensation and mixed precision.
 - [**DyQ-VLA: Temporal-Dynamic-Aware Quantization for Embodied Vision-Language-Action Models**](https://arxiv.org/pdf/2603.07904) · `2026-03` · Dynamic quantization using kinematic sensitivity.
 - [**QuantVLA: Scale-Calibrated Post-Training Quantization for Vision-Language-Action Models**](https://arxiv.org/pdf/2602.20309) · `2026-02` · Scale-calibrated PTQ for low-bit deployment. <sub>[Code](https://github.com/AIoT-MLSys-Lab/QuantVLA)</sub>
 - [**Shallow-π: Knowledge Distillation for Flow-based VLAs**](https://arxiv.org/pdf/2601.20262) · `2026-01` · Knowledge distillation for reduced-depth flow-based VLA models. <sub>Sec. 1.2</sub>
@@ -244,6 +251,9 @@ Optimize how VLA models are learned, executed, compressed, deployed, or evaluate
 
 #### Deployment, Compression, and Scheduling
 
+- [**EdgeFM: Efficient Edge Inference for Vision-Language Models**](https://arxiv.org/pdf/2604.27476) · 🔥 New `2026-04` · Cross-platform edge inference framework with VLA deployment cases.
+- [**Characterizing Vision-Language-Action Models across XPUs: Constraints and Acceleration for On-Robot Deployment (DP-Cache / V-AEFusion)**](https://arxiv.org/pdf/2604.24447) · 🔥 New `2026-04` · On-robot XPU characterization with diffusion-step caching and VLM/action-expert pipelining. <sub>Sec. 3.1</sub>
+- [**AsyncShield: A Plug-and-Play Edge Adapter for Asynchronous Cloud-based VLA Navigation**](https://arxiv.org/pdf/2604.24086) · 🔥 New `2026-04` · Edge adapter for asynchronous cloud-based VLA navigation under network latency. <sub>VLN</sub>
 - [**Realtime-VLA V2: Learning to Run VLAs Fast, Smooth, and Accurate**](https://arxiv.org/pdf/2603.26360) · `2026-03` · Deployment-oriented system with calibration, planning, control, and speed selection. <sub>[Code](https://github.com/dexmal/realtime-vla-v2)</sub>
 - [**RAPID: Redundancy-Aware and Compatibility-Optimal Edge-Cloud Partitioned Inference for Diverse VLA Models**](https://arxiv.org/pdf/2603.07949) · `2026-03` · Edge-cloud partitioned inference.
 - [**LiteVLA-Edge: Quantized On-Device Multimodal Control for Embedded Robotics**](https://arxiv.org/pdf/2603.03380) · `2026-03` · On-device VLA pipeline with 4-bit quantization. <sub>Sec. 4.1</sub>
