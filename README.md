@@ -29,13 +29,17 @@
 - [Star History](#star-history)
 - [Classification Logic](#classification-logic)
 
-## 🔥 Latest Updates (2026-05-26 to 2026-06-08)
+## 🔥 Latest Updates (2026-06-09 to 2026-06-22)
 
-- **2.1 Selective Feature Processing:** [SAFE-Pruner](#selective-feature-processing)
-- **3.1 Raw Action Generation:** [One-Step VLA](#raw-action-generation), [Flash-WAM](#raw-action-generation)
-- **3.2 Reasoning-Aware Action Generation:** [AdaWAM](#reasoning-aware-action-generation), [VisualThink-VLA](#reasoning-aware-action-generation)
-- **4.1 Training Efficiency Techniques:** [ForesightFlow](#training-efficiency-techniques), [OmniDreams](#training-efficiency-techniques), [EXPO-FT](#training-efficiency-techniques), [Omega-QVLA](#training-efficiency-techniques), [ActQuant](#training-efficiency-techniques)
-- **4.2 Inference Efficiency Techniques:** [ElegantVLA](#inference-efficiency-techniques)
+- **1.1 Static Backbone Selection:** [Efficient-WAM](#static-backbone-selection)
+- **1.2 Dynamic Computation Pathways:** [CLP](#dynamic-computation-pathways)
+- **1.3 Dual-system Design:** [AHA-WAM](#dual-system-design), [DAM-VLA](#dual-system-design)
+- **2.1 Selective Feature Processing:** [WAM4D](#selective-feature-processing), [LaWAM](#selective-feature-processing), [ImageWAM](#selective-feature-processing)
+- **2.2 Temporal Sharing and Reuse:** [MemoryWAM](#temporal-sharing-and-reuse)
+- **3.1 Raw Action Generation:** [TempoVLA](#raw-action-generation), [TBD-VLA](#raw-action-generation), [Light-WAM](#raw-action-generation), [C³ache](#raw-action-generation), [ReactVLA](#raw-action-generation)
+- **3.2 Reasoning-Aware Action Generation:** [BLUE](#reasoning-aware-action-generation), [AVA-VLA](#reasoning-aware-action-generation)
+- **4.1 Training Efficiency Techniques:** [Next Forcing](#training-efficiency-techniques), [RT-VLA](#training-efficiency-techniques), [Mix-QVLA](#training-efficiency-techniques)
+- **4.2 Inference Efficiency Techniques:** [vla.cpp](#inference-efficiency-techniques)
 
 See the full list in the corresponding sections below.
 
@@ -45,15 +49,15 @@ Start from the efficiency problem you care about, then jump to the corresponding
 
 | If you care about... | Go to | Typical signals | Papers |
 |---|---|---|---:|
-| Smaller model backbone | [1.1 Static Backbone Selection](#static-backbone-selection) | compact VLM, small backbone, lightweight policy | 7 |
-| Skipping unnecessary computation | [1.2 Dynamic Computation Pathways](#dynamic-computation-pathways) | routing, layer skipping, early exit, adaptive depth | 7 |
-| Slow reasoning with fast control | [1.3 Dual-system Design](#dual-system-design) | dual-system policy, memory, fast controller | 10 |
-| Fewer visual tokens | [2.1 Selective Feature Processing](#selective-feature-processing) | pruning, merging, salience selection, compression | 18 |
-| Reusing temporal context | [2.2 Temporal Sharing and Reuse](#temporal-sharing-and-reuse) | history fusion, KV cache, feature reuse | 8 |
-| Faster action decoding | [3.1 Raw Action Generation](#raw-action-generation) | action tokenizer, chunking, diffusion / flow, parallel decoding | 28 |
-| Cheaper reasoning before action | [3.2 Reasoning-Aware Action Generation](#reasoning-aware-action-generation) | text CoT, latent CoT, visual subgoal, world dynamics | 12 |
-| Cheaper adaptation or compression | [4.1 Training Efficiency Techniques](#training-efficiency-techniques) | distillation, RL, data selection, PTQ / QAT | 23 |
-| Real-time deployment or evaluation | [4.2 Inference Efficiency Techniques](#inference-efficiency-techniques) | streaming, scheduling, edge deployment, metrics | 32 |
+| Smaller model backbone | [1.1 Static Backbone Selection](#static-backbone-selection) | compact VLM, small backbone, lightweight policy | 8 |
+| Skipping unnecessary computation | [1.2 Dynamic Computation Pathways](#dynamic-computation-pathways) | routing, layer skipping, early exit, adaptive depth | 8 |
+| Slow reasoning with fast control | [1.3 Dual-system Design](#dual-system-design) | dual-system policy, memory, fast controller | 12 |
+| Fewer visual tokens | [2.1 Selective Feature Processing](#selective-feature-processing) | pruning, merging, salience selection, compression | 21 |
+| Reusing temporal context | [2.2 Temporal Sharing and Reuse](#temporal-sharing-and-reuse) | history fusion, KV cache, feature reuse | 9 |
+| Faster action decoding | [3.1 Raw Action Generation](#raw-action-generation) | action tokenizer, chunking, diffusion / flow, parallel decoding | 33 |
+| Cheaper reasoning before action | [3.2 Reasoning-Aware Action Generation](#reasoning-aware-action-generation) | text CoT, latent CoT, visual subgoal, world dynamics | 14 |
+| Cheaper adaptation or compression | [4.1 Training Efficiency Techniques](#training-efficiency-techniques) | distillation, RL, data selection, PTQ / QAT | 26 |
+| Real-time deployment or evaluation | [4.2 Inference Efficiency Techniques](#inference-efficiency-techniques) | streaming, scheduling, edge deployment, metrics | 33 |
 
 ---
 
@@ -70,6 +74,7 @@ Reduce structural redundancy inside the model itself through smaller backbones, 
 <a id="static-backbone-selection"></a>
 ### 1.1 Static Backbone Selection
 
+- [**Efficient-WAM: A 1B-Parameter World-Action Model with Low-Cost Future Imagination**](https://arxiv.org/pdf/2606.10040) · 🔥 New `2026-06` · Compact video expert with token-sparse future latents and asymmetric video-action denoising. <sub>[Code](https://github.com/jiajun613/Efficient-WAM) · Sec. 3.1</sub>
 - [**PokeVLA: Empowering Pocket-Sized Vision-Language-Action Model with Comprehensive World Knowledge Guidance**](https://arxiv.org/pdf/2604.20834) · `2026-04` · Pocket-sized VLA with a lightweight embodied-aware VLM and spatial-semantic guidance.
 - [**Evo-1: Lightweight Vision-Language-Action Model with Preserved Semantic Alignment**](https://arxiv.org/pdf/2511.04555) · `2025-11` · Compact multimodal backbone with a cross-modulated diffusion transformer. <sub>[Code](https://github.com/MINT-SJTU/Evo-1) · Sec. 4.1</sub>
 - [**FLOWER: Democratizing Generalist Robot Policies with Efficient Vision-Language-Action Flow Policies**](https://arxiv.org/pdf/2509.04996) · `2025-09` · Intermediate-modality fusion with LLM layer pruning. <sub>[Code](https://github.com/intuitive-robots/flower_vla_calvin) · Venue: CoRL 2025</sub>
@@ -81,6 +86,7 @@ Reduce structural redundancy inside the model itself through smaller backbones, 
 <a id="dynamic-computation-pathways"></a>
 ### 1.2 Dynamic Computation Pathways
 
+- [**Finetuning Vision-Language-Action Models Requires Fewer Layers Than You Think (CLP)**](https://arxiv.org/pdf/2606.20246) · 🔥 New `2026-06` · CKA-guided layer pruning before downstream VLA fine-tuning. <sub>Sec. 4.1</sub>
 - [**LoopVLA: Learning Sufficiency in Recurrent Refinement for Vision-Language-Action Models**](https://arxiv.org/pdf/2605.09948) · 🔥 New `2026-05` · Recurrent shared-block refinement with learned sufficiency scores for adaptive compute.
 - [**Act, Think or Abstain: Complexity-Aware Adaptive Inference for Vision-Language-Action Models (ActThinkAbstain)**](https://arxiv.org/pdf/2603.05147) · `2026-03` · Adaptive routing between direct acting, deeper reasoning, and abstention.
 - [**DySL-VLA: Efficient Vision-Language-Action Model Inference via Dynamic-Static Layer-Skipping for Robot Manipulation**](https://arxiv.org/pdf/2602.22896) · `2026-02` · Dynamic-static layer skipping that prioritizes action-critical layers. <sub>[Code](https://github.com/PKU-SEC-Lab/DYSL_VLA) · Sec. 4.1</sub>
@@ -92,6 +98,8 @@ Reduce structural redundancy inside the model itself through smaller backbones, 
 <a id="dual-system-design"></a>
 ### 1.3 Dual-system Design
 
+- [**AHA-WAM: Asynchronous Horizon-Adaptive World-Action Modeling with Observation-Guided Context Routing**](https://arxiv.org/pdf/2606.09811) · 🔥 New `2026-06` · Low-frequency world planner with reusable rolling KV context and a high-frequency action executor. <sub>[Code](https://github.com/serene-sivy/AHA-WAM) · Sec. 2.2</sub>
+- [**DAM-VLA: Decoupled Asynchronous Multimodal Vision Language Action Model**](https://arxiv.org/pdf/2606.12105) · 🔥 New `2026-06` · Per-modality latent buffers refreshed at native sensor rates for high-frequency action control. <sub>Sec. 2.2</sub>
 - [**TacMamba: A Tactile History Compression Adapter Bridging Fast Reflexes and Slow VLA Reasoning**](https://arxiv.org/pdf/2603.01700) · `2026-03` · Tactile history compression for high-frequency tactile control.
 - [**StreamVLA: Breaking the Reason-Act Cycle via Completion-State Gating**](https://arxiv.org/pdf/2602.01100) · `2026-02` · Lock-and-gated selective slow reasoning. <sub>Sec. 4.2</sub>
 - [**Video2Act: A Dual-System Video Diffusion Policy with Robotic Spatio-Motional Modeling**](https://arxiv.org/pdf/2512.03044) · `2025-12` · Dual-system VLA with slow VDM reasoning. <sub>[Code](https://github.com/jiayueru/Video2Act)</sub>
@@ -111,6 +119,9 @@ Reduce spatial and temporal redundancy in visual representations through token f
 <a id="selective-feature-processing"></a>
 ### 2.1 Selective Feature Processing
 
+- [**WAM4D: Fast 4D World Action Model via Spatial Register Tokens**](https://arxiv.org/pdf/2606.14048) · 🔥 New `2026-06` · Training-time spatial register tokens transfer 4D priors without dense geometry decoding at inference. <sub>Sec. 4.1</sub>
+- [**LaWAM: Latent World Action Models for Efficient Dynamics-Aware Robot Policies**](https://arxiv.org/pdf/2606.15768) · 🔥 New `2026-06` · Compact latent visual subgoals replace pixel-space future video generation. <sub>[Code](https://github.com/RLinf/LaWAM) · Sec. 3.1</sub>
+- [**ImageWAM: Do World Action Models Really Need Video Generation, or Just Image Editing?**](https://arxiv.org/pdf/2606.19531) · 🔥 New `2026-06` · Image-editing KV caches serve as compact world-action context for action prediction. <sub>[Code](https://github.com/yuyangalin/ImageWAM) · Sec. 3.1</sub>
 - [**SAFE-Pruner: Semantic Attention-Guided Future-Aware Token Pruning for Efficient Vision-Language-Action Manipulation**](https://arxiv.org/pdf/2605.29662) · 🔥 New `2026-05` · Future-aware visual token pruning using semantic attention consistency across historical keyframes.
 - [**See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model (GridS)**](https://arxiv.org/pdf/2605.11817) · 🔥 New `2026-05` · Task-aware differentiable grid resampling for compact visual feature selection. <sub>[Code](https://github.com/Fediory/Grid-Sampler)</sub>
 - [**One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy (OneWM-VLA)**](https://arxiv.org/pdf/2605.07931) · `2026-05` · One latent world token per view/frame for scalable long-horizon rollout.
@@ -138,6 +149,7 @@ Reduce spatial and temporal redundancy in visual representations through token f
 <a id="temporal-sharing-and-reuse"></a>
 ### 2.2 Temporal Sharing and Reuse
 
+- [**MemoryWAM: Efficient World Action Modeling with Persistent Memory**](https://arxiv.org/pdf/2606.20562) · 🔥 New `2026-06` · Hybrid persistent memory with recent frames, event anchors, and compact gist tokens for long-horizon WAM context. <sub>Sec. 4.2</sub>
 - [**ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models**](https://arxiv.org/pdf/2603.25766) · `2026-03` · Temporal fusion plus intra-LLM sparse aggregation for driving inference. <sub>Sec. 2.1 · AD</sub>
 - [**Beyond Short-Horizon: VQ-Memory for Robust Long-Horizon Manipulation in Non-Markovian Simulation Benchmarks (VQ-Memory)**](https://arxiv.org/pdf/2603.09513) · `2026-03` · Vector-quantized memory for long-horizon proprioceptive histories.
 - [**History-Conditioned Spatio-Temporal Visual Token Pruning for Efficient Vision-Language Navigation (A-MMR)**](https://arxiv.org/pdf/2603.06480) · `2026-03` · Spatio-temporal token pruning for current views and navigation history. <sub>Sec. 2.1 · VLN</sub>
@@ -155,6 +167,11 @@ Reduce redundancy in action representation, decoding, sampling, or reasoning bef
 <a id="raw-action-generation"></a>
 ### 3.1 Raw Action Generation
 
+- [**TempoVLA: Learning Speed-Controllable Vision-Language-Action Policies**](https://arxiv.org/pdf/2606.06491) · 🔥 New `2026-06` · Speed-conditioned action generation through variable-speed trajectory augmentation.
+- [**TBD-VLA: Temporal Block Diffusion Vision Language Action Model**](https://arxiv.org/pdf/2606.07895) · 🔥 New `2026-06` · Block diffusion denoises discrete action tokens in parallel within temporal blocks. <sub>[Code](https://github.com/TBD-VLA/lerobot) · Sec. 4.2</sub>
+- [**Light-WAM: Efficient World Action Models with State-Fusion Action Decoding**](https://arxiv.org/pdf/2606.08242) · 🔥 New `2026-06` · Single-forward StateFusionActionExpert with a compact video backbone for efficient WAM action decoding. <sub>[Code](https://github.com/L1ziang/Light-WAM) · Sec. 1.1</sub>
+- [**C³ache: Accelerating World Action Models with Cross Inference Chunk Cache**](https://arxiv.org/pdf/2606.08962) · 🔥 New `2026-06` · Cross-chunk action-expert residual reuse at matched denoising steps. <sub>Sec. 2.2</sub>
+- [**ReactVLA: Fast and Lightweight Reactive Robot Manipulation via Improved Mean Flow Action Generation**](https://arxiv.org/pdf/2606.14255) · 🔥 New `2026-06` · One-to-few-step Mean Flow action generation with dynamic attention-residual routing. <sub>Sec. 1.2</sub>
 - [**Let It Be Simple: One-Step Action Generation for Vision-Language-Action Models (One-Step VLA)**](https://arxiv.org/pdf/2606.05737) · 🔥 New `2026-06` · One-step diffusion / flow-based VLA action generation via high-noise-biased training.
 - [**Flash-WAM: Modality-Aware Distillation for World Action Models**](https://arxiv.org/pdf/2606.05254) · 🔥 New `2026-06` · Modality-aware step distillation for single-step video-action generation. <sub>[Code](https://github.com/NU-World-Model-Embodied-AI/Flash-WAM)</sub>
 - [**Fast-dDrive: Efficient Block-Diffusion VLM for Autonomous Driving**](https://arxiv.org/pdf/2605.23163) · 🔥 New `2026-05` · Section-aligned block diffusion with scaffold speculative decoding for driving outputs. <sub>[Code](https://github.com/NVlabs/Fast-dLLM) · Sec. 4.2 · AD</sub>
@@ -192,6 +209,8 @@ Reduce redundancy in action representation, decoding, sampling, or reasoning bef
 <a id="reasoning-aware-action-generation"></a>
 ### 3.2 Reasoning-Aware Action Generation
 
+- [**BLUE: Toward Better Language Use in Efficient Vision-Language-Action Models for Autonomous Driving**](https://arxiv.org/pdf/2606.08684) · 🔥 New `2026-06` · Lightweight gate decides when to generate language and when to directly predict actions. <sub>[Code](https://github.com/George-Ling3/BLUE) · Sec. 1.2 · AD</sub>
+- [**Think Less, Act Early: Reinforced Latent Reasoning with Early Exit in Vision-Language-Action Models (AVA-VLA)**](https://arxiv.org/pdf/2606.15099) · 🔥 New `2026-06` · RL-denoised latent reasoning with adaptive early exit for lower-latency action prediction. <sub>Sec. 1.2</sub>
 - [**Dreaming when Necessary: Advancing World Action Models with Adaptive Multi-Modal Reasoning (AdaWAM)**](https://arxiv.org/pdf/2606.07089) · 🔥 New `2026-06` · Dynamic routing between textual and visual reasoning to reduce unnecessary multimodal reasoning overhead. <sub>Sec. 1.2</sub>
 - [**VisualThink-VLA: Visual Intermediate Reasoning for Effective and Low-Latency Vision-Language-Action Policies**](https://arxiv.org/pdf/2605.30011) · 🔥 New `2026-05` · Compact visual-evidence tokens replace high-latency textual CoT for action prediction. <sub>[Code](https://github.com/DCDmllm/VisualThink-VLA) · Sec. 2.1</sub>
 - [**VLA-ATTC: Adaptive Test-Time Compute for VLA Models with Relative Action Critic Model**](https://arxiv.org/pdf/2605.01194) · `2026-05` · Uncertainty-triggered deliberation with a Relative Action Critic. <sub>Sec. 4.2</sub>
@@ -215,6 +234,7 @@ Optimize how VLA models are learned, executed, compressed, deployed, or evaluate
 
 #### Adaptation- and Data-Efficient Learning
 
+- [**Next Forcing: Causal World Modeling with Multi-Chunk Prediction**](https://arxiv.org/pdf/2606.11187) · 🔥 New `2026-06` · Multi-chunk future prediction modules provide dense causal supervision and parallel future-chunk inference. <sub>[Code](https://github.com/gangweix/next-forcing) · Sec. 3.1</sub>
 - [**Potential-Guided Flow Matching for Vision-Language-Action Policy Improvement (ForesightFlow)**](https://arxiv.org/pdf/2606.04968) · 🔥 New `2026-06` · Critic-free flow-matching policy improvement with jointly generated success-potential trajectories.
 - [**NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation**](https://arxiv.org/pdf/2606.03159) · 🔥 New `2026-06` · Real-time action-conditioned world model for scalable closed-loop autonomous-driving simulation. <sub>[Code](https://github.com/nv-tlabs/omni-dreams) · Sec. 4.2 · AD</sub>
 - [**EXPO-FT: Sample-Efficient Reinforcement Learning Finetuning for Vision-Language-Action Models**](https://arxiv.org/pdf/2605.25477) · 🔥 New `2026-05` · Online RL fine-tuning with action-chunk editing and Q-guided candidate selection. <sub>[Code](https://github.com/pd-perry/expo-ft/)</sub>
@@ -232,6 +252,8 @@ Optimize how VLA models are learned, executed, compressed, deployed, or evaluate
 
 #### Distillation and Compression-Oriented Optimization
 
+- [**RT-VLA: Real-Time Vision-Language-Action Models via Knowledge Distillation**](https://arxiv.org/pdf/2606.14010) · 🔥 New `2026-06` · Distills a large autonomous-driving VLA teacher into a compact real-time student. <sub>AD</sub>
+- [**Mix-QVLA: Task-Evidence-Aware Mixed-Precision Quantization of Vision-Language-Action Models**](https://arxiv.org/pdf/2606.19565) · 🔥 New `2026-06` · Task-evidence- and time-aware mixed-precision quantization for VLA memory and BitOps reduction.
 - [**Ω-QVLA: Robust Quantization for Vision-Language-Action Models via Composite Rotation and Per-step Scaling**](https://arxiv.org/pdf/2605.28803) · 🔥 New `2026-05` · Training-free W4A4 quantization for both the VLA language backbone and diffusion action head. <sub>[Code](https://github.com/UCMP13753/Omega-QVLA)</sub>
 - [**ActQuant: Sub-4-bit Action-Guided Quantization for Vision-Language-Action Models**](https://arxiv.org/pdf/2605.24011) · 🔥 New `2026-05` · Action-guided mixed-precision PTQ for sub-4-bit VLA compression and edge deployment. <sub>[Code](https://github.com/arashakb/ActQuant) · Sec. 4.2</sub>
 - [**Offline Semantic Guidance for Efficient Vision-Language-Action Policy Distillation (VLA-AD)**](https://arxiv.org/pdf/2605.16241) · 🔥 New `2026-05` · Offline VLM semantic guidance for distilling large VLA teachers into compact students.
@@ -273,6 +295,7 @@ Optimize how VLA models are learned, executed, compressed, deployed, or evaluate
 
 #### Deployment, Compression, and Scheduling
 
+- [**vla.cpp: A Unified Inference Runtime for Vision-Language-Action Models**](https://arxiv.org/pdf/2606.08094) · 🔥 New `2026-06` · Portable llama.cpp / ggml-based C++ runtime for flow-matching and diffusion VLA inference. <sub>[Code](https://github.com/VinRobotics/vla.cpp)</sub>
 - [**EdgeFM: Efficient Edge Inference for Vision-Language Models**](https://arxiv.org/pdf/2604.27476) · `2026-04` · Cross-platform edge inference framework with VLA deployment cases.
 - [**Characterizing Vision-Language-Action Models across XPUs: Constraints and Acceleration for On-Robot Deployment (DP-Cache / V-AEFusion)**](https://arxiv.org/pdf/2604.24447) · `2026-04` · On-robot XPU characterization with diffusion-step caching and VLM/action-expert pipelining. <sub>Sec. 3.1</sub>
 - [**AsyncShield: A Plug-and-Play Edge Adapter for Asynchronous Cloud-based VLA Navigation**](https://arxiv.org/pdf/2604.24086) · `2026-04` · Edge adapter for asynchronous cloud-based VLA navigation under network latency. <sub>VLN</sub>
