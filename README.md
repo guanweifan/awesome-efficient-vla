@@ -51,10 +51,10 @@ Start from the efficiency problem you care about, then jump to the corresponding
 | Slow reasoning with fast control | [1.3 Dual-system Design](#dual-system-design) | dual-system policy, memory, fast controller | 13 |
 | Fewer visual tokens | [2.1 Selective Feature Processing](#selective-feature-processing) | pruning, merging, salience selection, compression | 22 |
 | Reusing temporal context | [2.2 Temporal Sharing and Reuse](#temporal-sharing-and-reuse) | history fusion, KV cache, feature reuse | 9 |
-| Faster action decoding | [3.1 Raw Action Generation](#raw-action-generation) | action tokenizer, chunking, diffusion / flow, parallel decoding | 34 |
+| Faster action decoding | [3.1 Raw Action Generation](#raw-action-generation) | action tokenizer, chunking, diffusion / flow, parallel decoding | 35 |
 | Cheaper reasoning before action | [3.2 Reasoning-Aware Action Generation](#reasoning-aware-action-generation) | text CoT, latent CoT, visual subgoal, world dynamics | 14 |
 | Cheaper adaptation or compression | [4.1 Training Efficiency Techniques](#training-efficiency-techniques) | distillation, RL, data selection, PTQ / QAT | 30 |
-| Real-time deployment or evaluation | [4.2 Inference Efficiency Techniques](#inference-efficiency-techniques) | streaming, scheduling, edge deployment, metrics | 35 |
+| Real-time deployment or evaluation | [4.2 Inference Efficiency Techniques](#inference-efficiency-techniques) | streaming, scheduling, edge deployment, metrics | 36 |
 
 ---
 
@@ -175,6 +175,7 @@ Reduce redundancy in action representation, decoding, sampling, or reasoning bef
 - [**ReactVLA: Fast and Lightweight Reactive Robot Manipulation via Improved Mean Flow Action Generation**](https://arxiv.org/pdf/2606.14255) · 🔥 New `2026-06` · One-to-few-step Mean Flow action generation with dynamic attention-residual routing. <sub>Sec. 1.2</sub>
 - [**Let It Be Simple: One-Step Action Generation for Vision-Language-Action Models (One-Step VLA)**](https://arxiv.org/pdf/2606.05737) · 🔥 New `2026-06` · One-step diffusion / flow-based VLA action generation via high-noise-biased training.
 - [**Flash-WAM: Modality-Aware Distillation for World Action Models**](https://arxiv.org/pdf/2606.05254) · 🔥 New `2026-06` · Modality-aware step distillation for single-step video-action generation. <sub>[Code](https://github.com/NU-World-Model-Embodied-AI/Flash-WAM)</sub>
+- [**KeyStone: Geometry Guided Self-Consistency for Physical AI**](https://arxiv.org/pdf/2605.08638) · 🔥 New `2026-05` · Training-free inference-time selection that draws parallel candidate action chunks, clusters them in continuous action space, and returns the largest-cluster medoid. <sub>[Code](https://github.com/dywsjtu/keystone) · Sec. 4.2</sub>
 - [**Fast-dDrive: Efficient Block-Diffusion VLM for Autonomous Driving**](https://arxiv.org/pdf/2605.23163) · 🔥 New `2026-05` · Section-aligned block diffusion with scaffold speculative decoding for driving outputs. <sub>[Code](https://github.com/NVlabs/Fast-dLLM) · Sec. 4.2 · AD</sub>
 - [**BlockVLA: Accelerating Autoregressive VLA via Block Diffusion Finetuning**](https://arxiv.org/pdf/2605.13382) · 🔥 New `2026-05` · Block-diffusion finetuning with parallel denoising and KV-cache reuse. <sub>Sec. 2.2</sub>
 - [**CF-VLA: Efficient Coarse-to-Fine Action Generation for Vision-Language-Action Policies**](https://arxiv.org/pdf/2604.24622) · `2026-04` · Coarse-to-fine flow-based action generation with single-step local refinement. <sub>[Code](https://github.com/EmbodiedAI-RoboTron/CF-VLA)</sub>
@@ -303,6 +304,7 @@ Optimize how VLA models are learned, executed, compressed, deployed, or evaluate
 
 - [**Embodied.cpp: A Portable Inference Runtime of Embodied AI Models on Heterogeneous Robots**](https://arxiv.org/pdf/2607.02501) · 🔥 New `2026-07` · Portable C++ runtime with modular multi-rate execution and heterogeneous robot/device adapters. <sub>[Code](https://github.com/SEU-PAISys/Embodied.cpp)</sub>
 - [**vla.cpp: A Unified Inference Runtime for Vision-Language-Action Models**](https://arxiv.org/pdf/2606.08094) · 🔥 New `2026-06` · Portable llama.cpp / ggml-based C++ runtime for flow-matching and diffusion VLA inference. <sub>[Code](https://github.com/VinRobotics/vla.cpp)</sub>
+- [**Kairos: A Scalable Serving System for Physical AI**](https://arxiv.org/pdf/2605.11381) · 🔥 New `2026-05` · Multi-robot serving system with an execution-aware scheduler that interleaves inference and action execution across a robot fleet to cut end-to-end task latency. <sub>Sec. 3.1</sub>
 - [**EdgeFM: Efficient Edge Inference for Vision-Language Models**](https://arxiv.org/pdf/2604.27476) · `2026-04` · Cross-platform edge inference framework with VLA deployment cases.
 - [**Characterizing Vision-Language-Action Models across XPUs: Constraints and Acceleration for On-Robot Deployment (DP-Cache / V-AEFusion)**](https://arxiv.org/pdf/2604.24447) · `2026-04` · On-robot XPU characterization with diffusion-step caching and VLM/action-expert pipelining. <sub>Sec. 3.1</sub>
 - [**AsyncShield: A Plug-and-Play Edge Adapter for Asynchronous Cloud-based VLA Navigation**](https://arxiv.org/pdf/2604.24086) · `2026-04` · Edge adapter for asynchronous cloud-based VLA navigation under network latency. <sub>VLN</sub>
