@@ -16,12 +16,12 @@
 
 ## Paper Index
 
-**209 papers** · 13 categories
+**210 papers** · 13 categories
 
 | Research area | Papers | Topics |
 | --- | :---: | --- |
 | **3. Architectures & Compression** | **66** | [3.1 Lightweight Architectures](#lightweight-architectures) (27)<br>[3.2 Fast–Slow Architectures](#fast-slow-architectures) (17)<br>[3.3 Model Compression](#model-compression) (22) |
-| **4. Training & Adaptation** | **35** | [4.1 Efficient Supervised Learning](#efficient-supervised-learning) (17)<br>[4.2 Efficient Reinforcement Learning](#efficient-reinforcement-learning) (12)<br>[4.3 Efficient Fine-Tuning and Adaptation](#efficient-fine-tuning-and-adaptation) (6) |
+| **4. Training & Adaptation** | **36** | [4.1 Efficient Supervised Learning](#efficient-supervised-learning) (18)<br>[4.2 Efficient Reinforcement Learning](#efficient-reinforcement-learning) (12)<br>[4.3 Efficient Fine-Tuning and Adaptation](#efficient-fine-tuning-and-adaptation) (6) |
 | **5. Inference** | **96** | [5.1 Token Pruning and Context Compression](#token-pruning-and-context-compression) (36)<br>[5.2 Dynamic Computation](#dynamic-computation) (12)<br>[5.3 Efficient Action Generation](#efficient-action-generation) (21)<br>[5.4 Caching and Computation Reuse](#caching-and-computation-reuse) (14)<br>[5.5 Action Chunking and Replanning](#action-chunking-and-replanning) (13) |
 | **6. Deployment** | **12** | [6.1 Runtime Optimization](#runtime-optimization) (8)<br>[6.2 Distributed Serving](#distributed-serving) (4) |
 
@@ -141,6 +141,7 @@ Improve the efficiency of supervision, reinforcement learning, and policy adapta
 ### 4.1 Efficient Supervised Learning
 
 - [**SIEVE: Structure-Aware Data Selection for Imitation Learning with VLA Models**](https://arxiv.org/pdf/2607.06442) · `2026-07` · Primitive- and transition-aware selection of compact, representative imitation-learning subsets. <sub>[Code](https://github.com/ChangtiWu/SIEVE)</sub>
+- [**RoboGaze: Evaluating Robot World Models via Structured Vision-Language Analysis**](https://arxiv.org/pdf/2606.28385) · `2026-06` · Training-free multi-agent VLM evaluator that localizes and explains failures in generated robot videos, screening synthetic demonstrations for policy training.
 - [**FOCA: Future-Oriented Conditioning for Data-Efficient Vision-Language-Action Adaptation**](https://arxiv.org/pdf/2606.20867) · `2026-06` · Future interaction embeddings and latent future-goal alignment for few-shot VLA adaptation. <sub>[Code](https://github.com/cair-vinuni/FOCA)</sub>
 - [**Next Forcing: Causal World Modeling with Multi-Chunk Prediction**](https://arxiv.org/pdf/2606.11187) · `2026-06` · Multi-chunk future prediction modules provide dense causal supervision and parallel future-chunk inference. <sub>[Code](https://github.com/gangweix/next-forcing)</sub>
 - [**FrameSkip: Learning from Fewer but More Informative Frames in VLA Training**](https://arxiv.org/pdf/2605.13757) · `2026-05` · Informative-frame selection for reducing temporal supervision redundancy. <sub>[Code](https://github.com/ZGC-EmbodyAI/FrameSkip)</sub>
