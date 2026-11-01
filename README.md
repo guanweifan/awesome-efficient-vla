@@ -16,13 +16,13 @@
 
 ## Paper Index
 
-**210 papers** · 13 categories
+**211 papers** · 13 categories
 
 | Research area | Papers | Topics |
 | --- | :---: | --- |
 | **3. Architectures & Compression** | **66** | [3.1 Lightweight Architectures](#lightweight-architectures) (27)<br>[3.2 Fast–Slow Architectures](#fast-slow-architectures) (17)<br>[3.3 Model Compression](#model-compression) (22) |
 | **4. Training & Adaptation** | **36** | [4.1 Efficient Supervised Learning](#efficient-supervised-learning) (18)<br>[4.2 Efficient Reinforcement Learning](#efficient-reinforcement-learning) (12)<br>[4.3 Efficient Fine-Tuning and Adaptation](#efficient-fine-tuning-and-adaptation) (6) |
-| **5. Inference** | **96** | [5.1 Token Pruning and Context Compression](#token-pruning-and-context-compression) (36)<br>[5.2 Dynamic Computation](#dynamic-computation) (12)<br>[5.3 Efficient Action Generation](#efficient-action-generation) (21)<br>[5.4 Caching and Computation Reuse](#caching-and-computation-reuse) (14)<br>[5.5 Action Chunking and Replanning](#action-chunking-and-replanning) (13) |
+| **5. Inference** | **97** | [5.1 Token Pruning and Context Compression](#token-pruning-and-context-compression) (36)<br>[5.2 Dynamic Computation](#dynamic-computation) (12)<br>[5.3 Efficient Action Generation](#efficient-action-generation) (21)<br>[5.4 Caching and Computation Reuse](#caching-and-computation-reuse) (15)<br>[5.5 Action Chunking and Replanning](#action-chunking-and-replanning) (13) |
 | **6. Deployment** | **12** | [6.1 Runtime Optimization](#runtime-optimization) (8)<br>[6.2 Distributed Serving](#distributed-serving) (4) |
 
 ## Timeline
@@ -303,6 +303,7 @@ Reduce computation within policy queries and control when predictions are reused
 <a id="caching-and-computation-reuse"></a>
 ### 5.4 Caching and Computation Reuse
 
+- [**RoboWorM: Evaluating Movement Realism, Consistency and Acceleration Affects in Embodied Video World Models**](https://arxiv.org/pdf/2610.33807) · `2026-10` · Benchmark auditing 9 training-free caching, sparse-attention and token-pruning methods on 3 robot video world models (29k rollouts) with VLM-free kinematic (KIVA) and multi-view geometric (RIGIS) metrics; caching gives up to 2.3× speed-up with minimal physical degradation. <sub>[Code](https://github.com/cair-vinuni/roboworm) · [Project](https://roboworm.github.io/roboworm/) · Sec. 5.1</sub>
 - [**The Gate, Not the Cache: Gate Provenance Bounds the Closed-Loop Reliability of Training-Free VLA Token Skipping (ASR / Actuation-Slack Refresh)**](https://arxiv.org/pdf/2608.00391) · `2026-08` · Off-critical-path dense refresh restores clean gates for reliable low-latency token skipping. <sub>Sec. 6.1</sub>
 - [**Faster-WAM: Efficient Inference-Time Future Conditioning for Robust World Action Models (Faster-WAM, Zhao et al.)**](https://arxiv.org/pdf/2608.04404) · `2026-08` · Sparse video-action interaction and interval KV fusion reuse future-aware features during action denoising. <sub>[Code](https://github.com/hustvl/FasterWAM)</sub>
 - [**Neural Introspection Gating for Adaptive KV-Cache Reuse in Vision-Language-Action Models (Gated VLA-Cache)**](https://arxiv.org/pdf/2608.10824) · `2026-08` · Action-confidence gating invalidates stale visual KV caches and triggers full recomputation when needed. <sub>Venue: IROS 2026</sub>
@@ -310,11 +311,11 @@ Reduce computation within policy queries and control when predictions are reused
 - [**Evolving Cache Schedules for Fast Diffusion Policy Inference (EVO)**](https://arxiv.org/pdf/2607.20293) · `2026-07` · Evolutionary search uses closed-loop rollouts to optimize block-by-timestep cache schedules without policy retraining. <sub>[Code](https://github.com/pillom/EVO)</sub>
 - [**C³ache: Accelerating World Action Models with Cross Inference Chunk Cache**](https://arxiv.org/pdf/2606.08962) · `2026-06` · Cross-chunk action-expert residual reuse at matched denoising steps.
 - [**VLA-InfoEntropy: A Training-Free Vision-Attention Information Entropy Approach for Vision-Language-Action Models Inference Acceleration and Success**](https://arxiv.org/pdf/2604.05323) · `2026-04` · Training-free dynamic token selection using visual entropy, attention entropy, and timestep cues.
-- [**Learning to Accelerate Vision-Language-Action Models through Adaptive Visual Token Caching (LAC)**](https://arxiv.org/pdf/2602.00686) · `2026-02` · Task-aware token caching with differentiable selection. <sub>[Code](https://github.com/JiahanFan/LAC)</sub>
 
 <details>
-<summary>Show remaining 6 papers</summary>
+<summary>Show remaining 7 papers</summary>
 
+- [**Learning to Accelerate Vision-Language-Action Models through Adaptive Visual Token Caching (LAC)**](https://arxiv.org/pdf/2602.00686) · `2026-02` · Task-aware token caching with differentiable selection. <sub>[Code](https://github.com/JiahanFan/LAC)</sub>
 - [**TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for Vision-Language-Action Models**](https://arxiv.org/pdf/2508.19257) · `2025-08` · Pixel differences and attention relevance guide historical-feature fusion with keyframe anchoring. <sub>[Code](https://github.com/PKU-XLab/TTF-VLA) · Venue: AAAI 2026</sub>
 - [**Block-wise Adaptive Caching for Accelerating Diffusion Policy (BAC)**](https://arxiv.org/pdf/2506.13456) · `2025-06` · Offline block-wise cache scheduling coordinates refreshes to limit error propagation during diffusion-policy denoising.
 - [**Fast ECoT: Efficient Embodied Chain-of-Thought via Thoughts Reuse**](https://arxiv.org/pdf/2506.07639) · `2025-06` · Reasoning cache reuse and parallel generation. <sub>Venue: ICRA 2026</sub>
